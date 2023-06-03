@@ -7,15 +7,31 @@
 
 import UIKit
 
+struct Tutorial {
+    let image: UIImage!
+    let title: String
+    let desc: String
+}
+
 class TutorialViewController: UIViewController {
+    
     @IBOutlet weak private var collectionView: UICollectionView!
+    
+//    var dataSource: [Tutorial]
+        
     let images = [UIImage(named: "tutorial2"), UIImage(named: "tutorial6"), UIImage(named: "tutorial5")]
     let titles = ["Welcome to Techmaster", "Lớp iOS nâng cao - iOS 08", "Nâng cao giá trị bản thân"]
     let des = ["Học là có việc!", "Học vì đam mê!", "Hãy làm những gì mình thích!"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        dataSource = [
+//            Tutorial(image: UIImage(named: "tutorial2"), title: "Welcome to Techmaster", desc: "Học là có việc!"),
+//            Tutorial(image: UIImage(named: "tutorial6"), title: "Lớp iOS nâng cao - iOS 08", desc: "Học vì đam mê!"),
+//            Tutorial(image: UIImage(named: "tutorial5"), title: "Nâng cao giá trị bản thân", desc: "Hãy làm những gì mình thích!")
+//        ]
+        
         setupCollectionView()
     }
     
@@ -61,7 +77,6 @@ extension TutorialViewController: UICollectionViewDataSource {
         cell.desLabel.text = des[indexPath.row]
         if indexPath.row < images.count - 1 {
             cell.skipBtn.setTitle("Skip", for: .normal)
-            cell.skipButtonPressed(UIButton())
         } else {
             cell.skipBtn.setTitle("Start", for: .normal)
         }

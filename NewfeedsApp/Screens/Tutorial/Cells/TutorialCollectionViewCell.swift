@@ -14,6 +14,8 @@ class TutorialCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var desLabel: UILabel!
     @IBOutlet weak var skipBtn: UIButton!
     
+    var nextCallback: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,6 +34,10 @@ class TutorialCollectionViewCell: UICollectionViewCell {
         
         let nextIndexPath = IndexPath(item: indexPath.row + 1, section: indexPath.section)
         collectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+    }
+    
+    func bindData(index: Int) {
+        
     }
     
 }
