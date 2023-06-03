@@ -21,6 +21,8 @@
 		B4A6E2BE2A2A1A8D007F809B /* ItemSection1CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A6E2B62A2A1A8D007F809B /* ItemSection1CollectionViewCell.xib */; };
 		B4A6E2BF2A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E2B72A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift */; };
 		B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */; };
+		B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306242A2B951600290DCE /* RegisterViewController.swift */; };
+		B4B306272A2B952300290DCE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306262A2B952300290DCE /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		B4A6E2B62A2A1A8D007F809B /* ItemSection1CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSection1CollectionViewCell.xib; sourceTree = "<group>"; };
 		B4A6E2B72A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSection1CollectionViewCell.swift; sourceTree = "<group>"; };
 		B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		B4B306242A2B951600290DCE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		B4B306262A2B952300290DCE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +66,6 @@
 				F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */,
 				005C68B8FB4F643B4593D036 /* Pods-NewfeedsApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -110,6 +113,7 @@
 		B4A6E2AF2A2A1A8D007F809B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4B306232A2B94DA00290DCE /* RegisterAndLogin */,
 				B4A6E2B02A2A1A8D007F809B /* Tutorial */,
 				B4A6E2B92A2A1A8D007F809B /* Pinpost */,
 			);
@@ -143,6 +147,15 @@
 			children = (
 			);
 			path = Pinpost;
+			sourceTree = "<group>";
+		};
+		B4B306232A2B94DA00290DCE /* RegisterAndLogin */ = {
+			isa = PBXGroup;
+			children = (
+				B4B306242A2B951600290DCE /* RegisterViewController.swift */,
+				B4B306262A2B952300290DCE /* LoginViewController.swift */,
+			);
+			path = RegisterAndLogin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,9 +276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B306272A2B952300290DCE /* LoginViewController.swift in Sources */,
 				B4A6E2BC2A2A1A8D007F809B /* ItemSection2CollectionViewCell.swift in Sources */,
 				B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */,
 				B4A6E2BF2A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift in Sources */,
+				B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */,
 				B4A6E2A02A2A17B5007F809B /* ViewController.swift in Sources */,
 				B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */,
 				B4A6E2BD2A2A1A8D007F809B /* TutorialCollectionViewCell.swift in Sources */,
