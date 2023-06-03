@@ -14,7 +14,7 @@ class TutorialCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var skipBtn: UIButton!
     
-    var nextCallback: (() -> Void)?
+    var skipButtonAction: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,18 +35,18 @@ class TutorialCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-       nextCallback?()
+        skipButtonAction?()
     }
     
-    func bindData(index: Int, imageName: String, title: String, desc: String, nextCallback: ((_ indexPath: IndexPath) -> Void)?) {
+    func bindData(index: Int, imageName: String, title: String, desc: String, skipButtonAction: (() -> Void)?) {
+        
         if index == 2 {
             skipBtn.setTitle("Start", for: .normal)
         } else {
             skipBtn.setTitle("Skip", for: .normal)
         }
-        self.nextCallback = {
-            nextCallback?(IndexPath(row: index, section: 0))
-        }
+        
+        self.skipButtonAction = skipButtonAction
         tutorialImage.image = UIImage(named: imageName)
         titleLabel.text = title
         descLabel.text = desc

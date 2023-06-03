@@ -33,7 +33,6 @@ class TutorialViewController: UIViewController {
             Tutorial(image: "tutorial5", title: "Nâng cao giá trị bản thân", desc: "Hãy làm những gì mình thích!")
         ]
         collectionView.reloadData()
-        
     }
     
     private func setupCollectionView() {
@@ -56,6 +55,7 @@ class TutorialViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
     }
     
+    //Hàm chuyển màn sang register và login
     private func routeToAuthNavigation() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
@@ -78,13 +78,16 @@ extension TutorialViewController: UICollectionViewDataSource {
         cell.bindData(index: indexPath.row,
                       imageName: tutorialModel.image,
                       title: tutorialModel.title,
-                      desc: tutorialModel.desc) { [weak self] indexPath in
+                      desc: tutorialModel.desc) { [weak self] in
             guard let self = self else {return}
+            
             if indexPath.row + 1 == self.dataSource.count {
                 self.routeToAuthNavigation()
+                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
             } else {
                 self.currentPage = indexPath.row + 1
-                self.collectionView.scrollToItem(at: IndexPath(item: self.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+                self.collectionView.scrollToItem(at: IndexPath(row: self.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
             }
         }
         
