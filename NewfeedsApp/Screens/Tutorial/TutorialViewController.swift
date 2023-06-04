@@ -83,14 +83,15 @@ extension TutorialViewController: UICollectionViewDataSource {
             
             if indexPath.row + 1 == self.dataSource.count {
                 self.routeToAuthNavigation()
-                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
+//                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
             } else {
                 self.currentPage = indexPath.row + 1
+                self.collectionView.isPagingEnabled = false
                 self.collectionView.scrollToItem(at: IndexPath(row: self.currentPage, section: 0), at: .centeredHorizontally, animated: true)
-                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
+                self.collectionView.isPagingEnabled = true
+//                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
             }
         }
-        
         return cell
     }
 }
