@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TutorialCollectionViewCell" customModule="PostApp" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TutorialCollectionViewCell" customModule="NewfeedsApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="235" height="483"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -87,7 +87,7 @@
             </constraints>
             <size key="customSize" width="235" height="483"/>
             <connections>
-                <outlet property="desLabel" destination="1mw-Mk-YHR" id="9kr-FO-yDo"/>
+                <outlet property="descLabel" destination="1mw-Mk-YHR" id="9kr-FO-yDo"/>
                 <outlet property="skipBtn" destination="grU-Fk-FtU" id="VYb-yH-huL"/>
                 <outlet property="titleLabel" destination="cGR-QU-Ug8" id="MFP-qh-phu"/>
                 <outlet property="tutorialImage" destination="ati-pp-twa" id="Cih-hX-1ce"/>

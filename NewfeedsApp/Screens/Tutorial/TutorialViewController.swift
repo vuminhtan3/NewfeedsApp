@@ -7,20 +7,31 @@
 
 import UIKit
 
+private let reuseIdentifier = "TutorialCollectionViewCell"
+
+struct Tutorial {
+    let image: String
+    let title: String
+    let desc: String
+}
+
 class TutorialViewController: UIViewController {
+    
     @IBOutlet weak private var collectionView: UICollectionView!
-    let images = [UIImage(named: "tutorial2"), UIImage(named: "tutorial6"), UIImage(named: "tutorial5")]
-    let titles = ["Welcome to Techmaster", "Lớp iOS nâng cao - iOS 08", "Nâng cao giá trị bản thân"]
-    let des = ["Học là có việc!", "Học vì đam mê!", "Hãy làm những gì mình thích!"]
+    
+    private var dataSource = [Tutorial]()
+    private var currentPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupCollectionView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        dataSource = [
+            Tutorial(image: "tutorial2", title: "Welcome to Techmaster", desc: "Học là có việc!"),
+            Tutorial(image: "tutorial6", title: "Lớp iOS nâng cao - iOS 08", desc: "Học vì đam mê!"),
+            Tutorial(image: "tutorial5", title: "Nâng cao giá trị bản thân", desc: "Hãy làm những gì mình thích!")
+        ]
         collectionView.reloadData()
     }
     
@@ -29,9 +40,7 @@ class TutorialViewController: UIViewController {
         collectionView.dataSource = self
         
         //Đăng ký custom collection view cell
-        let cellID = "TutorialCollectionViewCell"
-        let nib = UINib(nibName: cellID, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: cellID)
+        collectionView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .white
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -45,33 +54,49 @@ class TutorialViewController: UIViewController {
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
     }
+    
+    //Hàm chuyển màn sang register và login
+    private func routeToAuthNavigation() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+        registerVC.modalPresentationStyle = .fullScreen
+        self.present(registerVC, animated: true)
+    }
 }
 
+//MARK: - UICollectionViewDataSource:
 extension TutorialViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TutorialCollectionViewCell", for: indexPath) as! TutorialCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TutorialCollectionViewCell
+        let tutorialModel = dataSource[indexPath.row]
         
-        cell.tutorialImage.image = images[indexPath.row]
-        cell.titleLabel.text = titles[indexPath.row]
-        cell.desLabel.text = des[indexPath.row]
-        if indexPath.row < images.count - 1 {
-            cell.skipBtn.setTitle("Skip", for: .normal)
-            cell.skipButtonPressed(UIButton())
-        } else {
-            cell.skipBtn.setTitle("Start", for: .normal)
+        cell.bindData(index: indexPath.row,
+                      imageName: tutorialModel.image,
+                      title: tutorialModel.title,
+                      desc: tutorialModel.desc) { [weak self] in
+            guard let self = self else {return}
+            
+            if indexPath.row + 1 == self.dataSource.count {
+                self.routeToAuthNavigation()
+//                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
+            } else {
+                self.currentPage = indexPath.row + 1
+                self.collectionView.isPagingEnabled = false
+                self.collectionView.scrollToItem(at: IndexPath(row: self.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+                self.collectionView.isPagingEnabled = true
+//                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
+            }
         }
-        
         return cell
     }
-    
-    
 }
 
+//MARK: - UICollectionViewDelegate:
 extension TutorialViewController: UICollectionViewDelegate {
     
 }

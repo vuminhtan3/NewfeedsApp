@@ -11,8 +11,10 @@ class TutorialCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var tutorialImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var desLabel: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var skipBtn: UIButton!
+    
+    var skipButtonAction: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,18 +22,34 @@ class TutorialCollectionViewCell: UICollectionViewCell {
         skipBtn.layer.cornerRadius = 10
         skipBtn.layer.borderWidth = 1.0
         skipBtn.layer.borderColor = UIColor.blue.cgColor
+        skipBtn.setTitleColor(UIColor.blue, for: .normal)
         skipBtn.clipsToBounds = true
         
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        tutorialImage.image = nil
+        titleLabel.text = nil
+        descLabel.text = nil
+    }
 
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        guard let collectionView = superview as? UICollectionView,
-              let indexPath = collectionView.indexPath(for: self) else {
-            return
+        skipButtonAction?()
+    }
+    
+    func bindData(index: Int, imageName: String, title: String, desc: String, skipButtonAction: (() -> Void)?) {
+        
+        if index == 2 {
+            skipBtn.setTitle("Start", for: .normal)
+        } else {
+            skipBtn.setTitle("Skip", for: .normal)
         }
         
-        let nextIndexPath = IndexPath(item: indexPath.row + 1, section: indexPath.section)
-        collectionView.scrollToItem(at: nextIndexPath, at: .centeredVertically, animated: true)
+        self.skipButtonAction = skipButtonAction
+        tutorialImage.image = UIImage(named: imageName)
+        titleLabel.text = title
+        descLabel.text = desc
     }
     
 }
