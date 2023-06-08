@@ -33,6 +33,7 @@
 		B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45562A30B2A6004BD334 /* NetworkConstant.swift */; };
 		B4FC455A2A323282004BD334 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45592A323282004BD334 /* RegisterPresenter.swift */; };
 		B4FC455D2A324D18004BD334 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC455C2A324D18004BD334 /* Validator.swift */; };
+		B4FC45622A325BCF004BD334 /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45612A325BCF004BD334 /* RegisterEntity.swift */; };
 		E13975E2C04AB087241B0F44 /* Pods_NewfeedsApp_NewfeedsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		B4FC45562A30B2A6004BD334 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		B4FC45592A323282004BD334 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		B4FC455C2A324D18004BD334 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		B4FC45612A325BCF004BD334 /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp_NewfeedsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				B4DC96852A2E227800D62E39 /* LoginEntity.swift */,
+				B4FC45612A325BCF004BD334 /* RegisterEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */,
 				B4A6E2A02A2A17B5007F809B /* ViewController.swift in Sources */,
 				B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */,
+				B4FC45622A325BCF004BD334 /* RegisterEntity.swift in Sources */,
 				B4A6E2BD2A2A1A8D007F809B /* TutorialCollectionViewCell.swift in Sources */,
 				B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */,
 				B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */,

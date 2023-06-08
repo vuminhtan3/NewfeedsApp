@@ -64,11 +64,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registerBtnTapped(_ sender: UIButton) {
-        
+        routeToRegister()
     }
     
     private func routeToMain() {
         //Chuyển tới màn hình chính
+        print("Chuyển tới màn hình chính")
     }
     
     private func routeToRegister() {
@@ -96,15 +97,15 @@ extension LoginViewController: LoginDisplay {
         routeToMain()
     }
     
-    func validateFailure(feild: String, message: String) {
-        if feild == "username" {
-            usernameFailureLb.isHidden = false
-            usernameFailureLb.text = message
-        } else {
-            passwordFailureLb.isHidden = false
-            passwordFailureLb.text = message
-        }
-    }
+//    func validateFailure(feild: String, message: String) {
+//        if feild == "username" {
+//            usernameFailureLb.isHidden = false
+//            usernameFailureLb.text = message
+//        } else {
+//            passwordFailureLb.isHidden = false
+//            passwordFailureLb.text = message
+//        }
+//    }
     
     func loginFailure(errorMsg: String?) {
         let alert = UIAlertController(title: "Login failure", message: errorMsg ?? "Something went wrong", preferredStyle: .alert)
@@ -119,6 +120,4 @@ extension LoginViewController: LoginDisplay {
             MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
-    
-    
 }
