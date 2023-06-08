@@ -21,8 +21,8 @@ class TutorialCollectionViewCell: UICollectionViewCell {
         
         skipBtn.layer.cornerRadius = 10
         skipBtn.layer.borderWidth = 1.0
-        skipBtn.layer.borderColor = UIColor.blue.cgColor
-        skipBtn.setTitleColor(UIColor.blue, for: .normal)
+        skipBtn.layer.borderColor = UIColor.systemCyan.cgColor
+        skipBtn.setTitleColor(UIColor.systemCyan, for: .normal)
         skipBtn.clipsToBounds = true
         
     }

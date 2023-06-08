@@ -58,9 +58,9 @@ class TutorialViewController: UIViewController {
     //Hàm chuyển màn sang register và login
     private func routeToAuthNavigation() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
-        registerVC.modalPresentationStyle = .fullScreen
-        self.present(registerVC, animated: true)
+        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true)
     }
 }
 
