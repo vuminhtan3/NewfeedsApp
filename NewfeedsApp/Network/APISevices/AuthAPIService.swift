@@ -12,14 +12,14 @@ protocol AuthAPIService {
     func login(username: String,
                password: String,
                success: ((LoginEntity) -> Void)?,
-               failure: ((String?) -> Void)?)
+               failure: ((APIError?) -> Void)?)
 }
 
 class AuthAPIServiceImpl: AuthAPIService {
     func login(username: String,
                password: String,
                success: ((LoginEntity) -> Void)?,
-               failure: ((String?) -> Void)?) {
+               failure: ((APIError?) -> Void)?) {
         
         // Send request call API onto sever
         AF.request("https://learn-api-3t7z.onrender.com/login",
@@ -36,7 +36,7 @@ class AuthAPIServiceImpl: AuthAPIService {
                 success?(entity)
             case .failure(let error):
                 //Call API failure
-                failure?(error.failureReason) // haven't handled the error yet
+                failure?(APIError.from(afError: error))// haven't handled the error yet
             }
         }
     }

@@ -14,7 +14,7 @@ protocol AuthRepository {
     func login(username: String,
                password: String,
                success: ((LoginEntity) -> Void)?,
-               failure: ((String?) -> Void)?)
+               failure: ((APIError?) -> Void)?)
 }
 
 class AuthRepositoryImpl: AuthRepository {
@@ -27,7 +27,7 @@ class AuthRepositoryImpl: AuthRepository {
     func login(username: String,
                password: String,
                success: ((LoginEntity) -> Void)?,
-               failure: ((String?) -> Void)?) {
+               failure: ((APIError?) -> Void)?) {
         authAPIService.login(username: username, password: password, success: success, failure: failure)
     }
 }
