@@ -6,18 +6,25 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol LoginDisplay {
-    func validateFailure(feild: String, message: String)
+    func loginSuccess()
+    func loginValidateFailure(field: LoginFormField, message: String)
+    func loginFailure(errorMsg: String?)
+    func showLoading(isShow: Bool)
 }
 
+enum LoginFormField {
+    case username
+    case password
+}
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTF: UITextField!
-    
     @IBOutlet weak var passwordTF: UITextField!
-
     @IBOutlet weak var passwordFailureLb: UILabel!
     @IBOutlet weak var usernameFailureLb: UILabel!
+    
     var presenter: LoginPresenter!
     
     override func viewDidLoad() {
@@ -31,7 +38,7 @@ class LoginViewController: UIViewController {
          */
         let authRepository = AuthRepositoryImpl(authAPIService: authAPIService)
         
-        presenter = LoginPresenterImpl(controller: self, authRepository: authRepository)
+        presenter = LoginPresenterImpl(loginVC: self, authRepository: authRepository)
         
         usernameFailureLb.isHidden = true
         passwordFailureLb.isHidden = true
@@ -40,24 +47,12 @@ class LoginViewController: UIViewController {
         
     }
     
-    
-    @IBAction func handleUsernameTFChanging(_ sender: UITextField) {
+    @IBAction func handleTextFieldChanging(_ sender: Any) {
         usernameFailureLb.isHidden = true
         passwordFailureLb.isHidden = true
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-//        if usernameTF.text == "" {
-//            usernameFailureLb.text = "Username is required"
-//        } else {
-//            usernameFailureLb.text = ""
-//        }
-//
-//        if passwordTF.text == "" {
-//            passwordFailureLb.text = "Password is required"
-//        } else {
-//            passwordFailureLb.text = ""
-//        }
         let username = usernameTF.text ?? ""
         let password = passwordTF.text ?? ""
         presenter.login(username: username, password: password)
@@ -77,12 +72,26 @@ class LoginViewController: UIViewController {
     }
     
     private func routeToRegister() {
-        //
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+        registerVC.modalPresentationStyle = .fullScreen
+        self.present(registerVC, animated: true)
     }
 }
 
 extension LoginViewController: LoginDisplay {
+    func loginValidateFailure(field: LoginFormField, message: String) {
+        switch field {
+        case .username:
+            usernameFailureLb.isHidden = false
+            usernameFailureLb.text = message
+        case .password:
+            passwordFailureLb.isHidden = false
+            passwordFailureLb.text = message
+        }
+    }
     
+   
     func loginSuccess() {
         routeToMain()
     }
@@ -96,4 +105,20 @@ extension LoginViewController: LoginDisplay {
             passwordFailureLb.text = message
         }
     }
+    
+    func loginFailure(errorMsg: String?) {
+        let alert = UIAlertController(title: "Login failure", message: errorMsg ?? "Something went wrong", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showLoading(isShow: Bool) {
+        if isShow {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
+    
 }
