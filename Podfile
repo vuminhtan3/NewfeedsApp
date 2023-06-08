@@ -6,5 +6,12 @@ target 'NewfeedsApp' do
   use_frameworks!
   pod 'Alamofire'
   # Pods for NewfeedsApp
+  
+  target 'NewfeedsAppTests' do
+    
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'MockingbirdFramework', '~> 0.20'
+  end
 
 end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B9EE9E3ADABAB8A7626159C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */; };
 		63F87B125EE4240250C58DFE /* Pods_NewfeedsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */; };
 		B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E29B2A2A17B5007F809B /* AppDelegate.swift */; };
 		B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E29D2A2A17B5007F809B /* SceneDelegate.swift */; };
@@ -23,10 +24,30 @@
 		B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */; };
 		B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306242A2B951600290DCE /* RegisterViewController.swift */; };
 		B4B306272A2B952300290DCE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306262A2B952300290DCE /* LoginViewController.swift */; };
+		B4DC967D2A2E102800D62E39 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC967C2A2E102800D62E39 /* LoginPresenter.swift */; };
+		B4DC96802A2E110F00D62E39 /* TestLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC967F2A2E110F00D62E39 /* TestLoginPresenter.swift */; };
+		B4DC96822A2E21D500D62E39 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC96812A2E21D500D62E39 /* AuthRepository.swift */; };
+		B4DC96862A2E227800D62E39 /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC96852A2E227800D62E39 /* LoginEntity.swift */; };
+		B4DC96892A2E241500D62E39 /* AuthAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC96882A2E241500D62E39 /* AuthAPIService.swift */; };
+		B4FC45542A30B12E004BD334 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45532A30B12E004BD334 /* AuthRouter.swift */; };
+		B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45562A30B2A6004BD334 /* NetworkConstant.swift */; };
+		E13975E2C04AB087241B0F44 /* Pods_NewfeedsApp_NewfeedsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4DC96772A2E0D4E00D62E39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4A6E2902A2A17B5007F809B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4A6E2972A2A17B5007F809B;
+			remoteInfo = NewfeedsApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		005C68B8FB4F643B4593D036 /* Pods-NewfeedsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.release.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.release.xcconfig"; sourceTree = "<group>"; };
+		16042DFEED38E3D05218DB05 /* Pods-NewfeedsApp-NewfeedsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp-NewfeedsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		773D1B02BD4687B9A06598BC /* Pods-NewfeedsApp-NewfeedsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp-NewfeedsAppTests.release.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		B4A6E2982A2A17B5007F809B /* NewfeedsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewfeedsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A6E29B2A2A17B5007F809B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4A6E29D2A2A17B5007F809B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,8 +65,19 @@
 		B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		B4B306242A2B951600290DCE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B4B306262A2B952300290DCE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B4DC96732A2E0D4E00D62E39 /* NewfeedsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewfeedsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4DC967C2A2E102800D62E39 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		B4DC967E2A2E110F00D62E39 /* NewfeedsAppTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewfeedsAppTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B4DC967F2A2E110F00D62E39 /* TestLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoginPresenter.swift; sourceTree = "<group>"; };
+		B4DC96812A2E21D500D62E39 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		B4DC96852A2E227800D62E39 /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		B4DC96882A2E241500D62E39 /* AuthAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIService.swift; sourceTree = "<group>"; };
+		B4FC45532A30B12E004BD334 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		B4FC45562A30B2A6004BD334 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp_NewfeedsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +89,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4DC96702A2E0D4E00D62E39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E13975E2C04AB087241B0F44 /* Pods_NewfeedsApp_NewfeedsAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45EB74EEEBF6E261B1A1B1F9 /* Generated Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */,
+			);
+			name = "Generated Mocks";
+			sourceTree = "<group>";
+		};
 		63C062946B2E91A0C586AE3A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */,
 				005C68B8FB4F643B4593D036 /* Pods-NewfeedsApp.release.xcconfig */,
+				16042DFEED38E3D05218DB05 /* Pods-NewfeedsApp-NewfeedsAppTests.debug.xcconfig */,
+				773D1B02BD4687B9A06598BC /* Pods-NewfeedsApp-NewfeedsAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -73,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */,
+				F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -81,9 +132,11 @@
 			isa = PBXGroup;
 			children = (
 				B4A6E29A2A2A17B5007F809B /* NewfeedsApp */,
+				B4DC96742A2E0D4E00D62E39 /* NewfeedsAppTests */,
 				B4A6E2992A2A17B5007F809B /* Products */,
 				63C062946B2E91A0C586AE3A /* Pods */,
 				A5255A3E820B653042D0DBA9 /* Frameworks */,
+				45EB74EEEBF6E261B1A1B1F9 /* Generated Mocks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A6E2982A2A17B5007F809B /* NewfeedsApp.app */,
+				B4DC96732A2E0D4E00D62E39 /* NewfeedsAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +152,9 @@
 		B4A6E29A2A2A17B5007F809B /* NewfeedsApp */ = {
 			isa = PBXGroup;
 			children = (
+				B4FC45552A30B137004BD334 /* Network */,
+				B4DC96842A2E226200D62E39 /* Entities */,
+				B4DC96832A2E21DB00D62E39 /* Repositories */,
 				B4A6E2AF2A2A1A8D007F809B /* Screens */,
 				B4A6E29B2A2A17B5007F809B /* AppDelegate.swift */,
 				B4A6E29D2A2A17B5007F809B /* SceneDelegate.swift */,
@@ -115,7 +172,6 @@
 			children = (
 				B4B306232A2B94DA00290DCE /* RegisterAndLogin */,
 				B4A6E2B02A2A1A8D007F809B /* Tutorial */,
-				B4A6E2B92A2A1A8D007F809B /* Pinpost */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -142,20 +198,57 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		B4A6E2B92A2A1A8D007F809B /* Pinpost */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pinpost;
-			sourceTree = "<group>";
-		};
 		B4B306232A2B94DA00290DCE /* RegisterAndLogin */ = {
 			isa = PBXGroup;
 			children = (
 				B4B306242A2B951600290DCE /* RegisterViewController.swift */,
 				B4B306262A2B952300290DCE /* LoginViewController.swift */,
+				B4DC967C2A2E102800D62E39 /* LoginPresenter.swift */,
 			);
 			path = RegisterAndLogin;
+			sourceTree = "<group>";
+		};
+		B4DC96742A2E0D4E00D62E39 /* NewfeedsAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC967F2A2E110F00D62E39 /* TestLoginPresenter.swift */,
+				B4DC967E2A2E110F00D62E39 /* NewfeedsAppTests-Bridging-Header.h */,
+			);
+			path = NewfeedsAppTests;
+			sourceTree = "<group>";
+		};
+		B4DC96832A2E21DB00D62E39 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC96812A2E21D500D62E39 /* AuthRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B4DC96842A2E226200D62E39 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC96852A2E227800D62E39 /* LoginEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		B4DC96872A2E23EC00D62E39 /* APISevices */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC96882A2E241500D62E39 /* AuthAPIService.swift */,
+				B4FC45532A30B12E004BD334 /* AuthRouter.swift */,
+			);
+			path = APISevices;
+			sourceTree = "<group>";
+		};
+		B4FC45552A30B137004BD334 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC96872A2E23EC00D62E39 /* APISevices */,
+				B4FC45562A30B2A6004BD334 /* NetworkConstant.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +273,27 @@
 			productReference = B4A6E2982A2A17B5007F809B /* NewfeedsApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B4DC96722A2E0D4E00D62E39 /* NewfeedsAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4DC967B2A2E0D4E00D62E39 /* Build configuration list for PBXNativeTarget "NewfeedsAppTests" */;
+			buildPhases = (
+				3AAB27B6F3544E5E37112747 /* [CP] Check Pods Manifest.lock */,
+				6E109189701AF5E72B733668 /* Generate Mockingbird Mocks */,
+				B4DC966F2A2E0D4E00D62E39 /* Sources */,
+				B4DC96702A2E0D4E00D62E39 /* Frameworks */,
+				B4DC96712A2E0D4E00D62E39 /* Resources */,
+				EEE93282D379354635537087 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4DC96782A2E0D4E00D62E39 /* PBXTargetDependency */,
+			);
+			name = NewfeedsAppTests;
+			productName = NewfeedsAppTests;
+			productReference = B4DC96732A2E0D4E00D62E39 /* NewfeedsAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +306,11 @@
 				TargetAttributes = {
 					B4A6E2972A2A17B5007F809B = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					B4DC96722A2E0D4E00D62E39 = {
+						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
+						TestTargetID = B4A6E2972A2A17B5007F809B;
 					};
 				};
 			};
@@ -209,6 +328,7 @@
 			projectRoot = "";
 			targets = (
 				B4A6E2972A2A17B5007F809B /* NewfeedsApp */,
+				B4DC96722A2E0D4E00D62E39 /* NewfeedsAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,9 +347,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4DC96712A2E0D4E00D62E39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3AAB27B6F3544E5E37112747 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NewfeedsApp-NewfeedsAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5D2453D20F681D5206B41687 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +401,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6E109189701AF5E72B733668 /* Generate Mockingbird Mocks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mockingbird Mocks";
+			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\n# Prevent Xcode 13 from running this script while indexing.\n[[ \"${ACTION}\" == \"indexbuild\" ]] && exit 0\n\n\"${SRCROOT}/Pods/MockingbirdFramework/mockingbird\" generate --targets \"NewfeedsApp\" --outputs \"${SRCROOT}/MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift\"";
+		};
 		C70C7B484D5F57904B509794 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,13 +425,38 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEE93282D379354635537087 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -276,19 +466,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4FC45542A30B12E004BD334 /* AuthRouter.swift in Sources */,
+				B4DC96892A2E241500D62E39 /* AuthAPIService.swift in Sources */,
 				B4B306272A2B952300290DCE /* LoginViewController.swift in Sources */,
+				B4DC96822A2E21D500D62E39 /* AuthRepository.swift in Sources */,
+				B4DC96862A2E227800D62E39 /* LoginEntity.swift in Sources */,
 				B4A6E2BC2A2A1A8D007F809B /* ItemSection2CollectionViewCell.swift in Sources */,
 				B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */,
 				B4A6E2BF2A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift in Sources */,
+				B4DC967D2A2E102800D62E39 /* LoginPresenter.swift in Sources */,
 				B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */,
 				B4A6E2A02A2A17B5007F809B /* ViewController.swift in Sources */,
 				B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */,
 				B4A6E2BD2A2A1A8D007F809B /* TutorialCollectionViewCell.swift in Sources */,
+				B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */,
 				B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4DC966F2A2E0D4E00D62E39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4DC96802A2E110F00D62E39 /* TestLoginPresenter.swift in Sources */,
+				3B9EE9E3ADABAB8A7626159C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4DC96782A2E0D4E00D62E39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4A6E2972A2A17B5007F809B /* NewfeedsApp */;
+			targetProxy = B4DC96772A2E0D4E00D62E39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B4A6E2A12A2A17B5007F809B /* Main.storyboard */ = {
@@ -480,6 +693,57 @@
 			};
 			name = Release;
 		};
+		B4DC96792A2E0D4E00D62E39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16042DFEED38E3D05218DB05 /* Pods-NewfeedsApp-NewfeedsAppTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tanvm.NewfeedsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "NewfeedsAppTests/NewfeedsAppTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewfeedsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NewfeedsApp";
+			};
+			name = Debug;
+		};
+		B4DC967A2A2E0D4E00D62E39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 773D1B02BD4687B9A06598BC /* Pods-NewfeedsApp-NewfeedsAppTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tanvm.NewfeedsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "NewfeedsAppTests/NewfeedsAppTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewfeedsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NewfeedsApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -497,6 +761,15 @@
 			buildConfigurations = (
 				B4A6E2AD2A2A17B7007F809B /* Debug */,
 				B4A6E2AE2A2A17B7007F809B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4DC967B2A2E0D4E00D62E39 /* Build configuration list for PBXNativeTarget "NewfeedsAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4DC96792A2E0D4E00D62E39 /* Debug */,
+				B4DC967A2A2E0D4E00D62E39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
