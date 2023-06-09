@@ -236,6 +236,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="handleTextFieldChanging:" destination="QeR-Tt-QbN" eventType="editingChanged" id="y9N-qR-L1E"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iE-W5-BNw">
                                         <rect key="frame" x="0.0" y="55" width="313" height="17"/>
@@ -250,6 +253,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="handleTextFieldChanging:" destination="QeR-Tt-QbN" eventType="editingChanged" id="cMC-bk-rqr"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSW-Ac-B74">
                                         <rect key="frame" x="0.0" y="137" width="313" height="17"/>
@@ -264,6 +270,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="handleTextFieldChanging:" destination="QeR-Tt-QbN" eventType="editingChanged" id="Wbt-nk-SiY"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kY5-3o-IX4">
                                         <rect key="frame" x="0.0" y="219" width="313" height="17"/>
@@ -328,7 +337,7 @@
                         <outlet property="confirmPasswordFailureLb" destination="kY5-3o-IX4" id="Zsz-SU-gEm"/>
                         <outlet property="confirmPasswordTF" destination="aMQ-Zo-diK" id="Z52-GA-UeA"/>
                         <outlet property="passwordFailureLb" destination="uSW-Ac-B74" id="w2I-Qe-KWh"/>
-                        <outlet property="passwordTF" destination="aMQ-Zo-diK" id="rFU-fB-VLO"/>
+                        <outlet property="passwordTF" destination="2wM-g8-or5" id="u9u-ib-gPR"/>
                         <outlet property="usernameFailureLb" destination="0iE-W5-BNw" id="Nuu-9a-r9O"/>
                         <outlet property="usernameTF" destination="cLB-qe-wD6" id="xdy-0F-Zm0"/>
                     </connections>

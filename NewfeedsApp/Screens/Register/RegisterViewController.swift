@@ -6,6 +6,21 @@
 //
 
 import UIKit
+import MBProgressHUD
+
+protocol RegisterDisplay {
+    func registerSuccess()
+    func registerValidateFailure(field: RegisterFormField, message: String?)
+    func registerFailure(errorMsg: String?)
+    func showLoading(isShow: Bool)
+    
+}
+
+enum RegisterFormField {
+    case username
+    case password
+    case confirmPassword
+}
 
 class RegisterViewController: UIViewController {
 
@@ -17,40 +32,73 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordFailureLb: UILabel!
     @IBOutlet weak var confirmPasswordFailureLb: UILabel!
     
+    var presenter: RegisterPresenter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        usernameFailureLb.text = ""
-        passwordFailureLb.text = ""
-        confirmPasswordFailureLb.text = ""
+        
+        let authAPIService = AuthAPIServiceImpl()
+        let authRepository = AuthRepositoryImpl(authAPIService: authAPIService)
+        presenter = RegisterPresenterImpl(registerVC: self, authRepository: authRepository)
+        
+        usernameFailureLb.isHidden = true
+        passwordFailureLb.isHidden = true
+        confirmPasswordFailureLb.isHidden = true
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func handleTextFieldChanging(_ sender: UITextField) {
+        usernameFailureLb.isHidden = true
+        passwordFailureLb.isHidden = true
+        confirmPasswordFailureLb.isHidden = true
+    }
+    
     @IBAction func registerButtonTapped(_ sender: UIButton) {
-        if usernameTF.text == "" {
-            usernameFailureLb.text = "Username is required"
-        } else {
-            usernameFailureLb.text = ""
-        }
+        let username = usernameTF.text ?? ""
+        let password = passwordTF.text ?? ""
+        let confirmPassword = confirmPasswordTF.text ?? ""
         
-        if passwordTF.text == "" {
-            passwordFailureLb.text = "Password is required"
-        } else if passwordTF.text!.count < 6 {
-            passwordFailureLb.text = "Password must be at least 6 character"
-        } else {
-            passwordFailureLb.text = ""
-        }
-        
-        if passwordTF.text != confirmPasswordTF.text || confirmPasswordTF.text == "" {
-            confirmPasswordFailureLb.text = "Password are not matching"
-        } else {
-            confirmPasswordFailureLb.text = ""
-        }
+        presenter.register(username: username, nickname: username, password: password, confirmPassword: confirmPassword)
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
+}
+extension RegisterViewController: RegisterDisplay {
+    func registerValidateFailure(field: RegisterFormField, message: String?) {
+        switch field {
+        case .username:
+            usernameFailureLb.isHidden = false
+            usernameFailureLb.text = message
+        case .password:
+            passwordFailureLb.isHidden = false
+            passwordFailureLb.text = message
+        case .confirmPassword:
+            confirmPasswordFailureLb.isHidden = false
+            confirmPasswordFailureLb.text = message
+        }
+    }
+   
+    func registerSuccess() {
+        let alert = UIAlertController(title: "Register Success", message: "Register successfull, back to login", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+        print("Register successfull")
+    }
+    
+    func registerFailure(errorMsg: String?) {
+        let alert = UIAlertController(title: "Register failure", message: errorMsg ?? "Something went wrong", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showLoading(isShow: Bool) {
+        if isShow {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Dispatch
 
 /**
  Xử lý bussiness login
@@ -89,6 +88,5 @@ class LoginPresenterImpl: LoginPresenter {
             self.loginVC.showLoading(isShow: false)
             self.loginVC.loginFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong!")
         }
-
     }
 }
