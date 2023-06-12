@@ -78,6 +78,7 @@ class LoginPresenterImpl: LoginPresenter {
             guard let self = self else {return}
             self.loginVC.showLoading(isShow: false)
             if let accessToken = loginEntity.accessToken, !accessToken.isEmpty {
+                AuthService.share.accessToken = accessToken
                 self.loginVC.loginSuccess()
             } else {
                 self.loginVC.loginFailure(errorMsg: "Something went wrong!")

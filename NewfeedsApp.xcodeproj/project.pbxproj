@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B9EE9E3ADABAB8A7626159C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */; };
 		63F87B125EE4240250C58DFE /* Pods_NewfeedsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */; };
 		B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E29B2A2A17B5007F809B /* AppDelegate.swift */; };
 		B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E29D2A2A17B5007F809B /* SceneDelegate.swift */; };
@@ -34,7 +33,11 @@
 		B4FC455A2A323282004BD334 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45592A323282004BD334 /* RegisterPresenter.swift */; };
 		B4FC455D2A324D18004BD334 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC455C2A324D18004BD334 /* Validator.swift */; };
 		B4FC45622A325BCF004BD334 /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45612A325BCF004BD334 /* RegisterEntity.swift */; };
+		B4FC45652A334A99004BD334 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45642A334A99004BD334 /* UserDefaultService.swift */; };
+		B4FC45672A3355E9004BD334 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45662A3355E9004BD334 /* AuthService.swift */; };
+		B4FC456A2A335B56004BD334 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45692A335B56004BD334 /* HomepageViewController.swift */; };
 		E13975E2C04AB087241B0F44 /* Pods_NewfeedsApp_NewfeedsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */; };
+		E611BDD020661D40E6DD7DCA /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,11 @@
 		B4FC45592A323282004BD334 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		B4FC455C2A324D18004BD334 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		B4FC45612A325BCF004BD334 /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
+		B4FC45642A334A99004BD334 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		B4FC45662A3355E9004BD334 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B4FC45692A335B56004BD334 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
+		BCF657CF91DA77ECCC2B5C26 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp_NewfeedsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,7 +117,7 @@
 		45EB74EEEBF6E261B1A1B1F9 /* Generated Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */,
+				B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */,
 			);
 			name = "Generated Mocks";
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 		B4A6E29A2A2A17B5007F809B /* NewfeedsApp */ = {
 			isa = PBXGroup;
 			children = (
+				B4FC45632A33483C004BD334 /* Services */,
 				B4FC455E2A324D1E004BD334 /* Utils */,
 				B4FC45552A30B137004BD334 /* Network */,
 				B4DC96842A2E226200D62E39 /* Entities */,
@@ -177,6 +186,7 @@
 		B4A6E2AF2A2A1A8D007F809B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4FC45682A335B37004BD334 /* Homepage */,
 				B4FC45582A322ED4004BD334 /* Register */,
 				B4B306232A2B94DA00290DCE /* Login */,
 				B4A6E2B02A2A1A8D007F809B /* Tutorial */,
@@ -274,6 +284,23 @@
 				B4FC455C2A324D18004BD334 /* Validator.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B4FC45632A33483C004BD334 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B4FC45642A334A99004BD334 /* UserDefaultService.swift */,
+				B4FC45662A3355E9004BD334 /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B4FC45682A335B37004BD334 /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				B4FC45692A335B56004BD334 /* HomepageViewController.swift */,
+			);
+			path = Homepage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,9 +477,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,9 +498,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -490,14 +525,17 @@
 				B4DC96862A2E227800D62E39 /* LoginEntity.swift in Sources */,
 				B4A6E2BC2A2A1A8D007F809B /* ItemSection2CollectionViewCell.swift in Sources */,
 				B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */,
+				B4FC45672A3355E9004BD334 /* AuthService.swift in Sources */,
 				B4A6E2BF2A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift in Sources */,
 				B4DC967D2A2E102800D62E39 /* LoginPresenter.swift in Sources */,
+				B4FC45652A334A99004BD334 /* UserDefaultService.swift in Sources */,
 				B4FC455D2A324D18004BD334 /* Validator.swift in Sources */,
 				B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */,
 				B4A6E2A02A2A17B5007F809B /* ViewController.swift in Sources */,
 				B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */,
 				B4FC45622A325BCF004BD334 /* RegisterEntity.swift in Sources */,
 				B4A6E2BD2A2A1A8D007F809B /* TutorialCollectionViewCell.swift in Sources */,
+				B4FC456A2A335B56004BD334 /* HomepageViewController.swift in Sources */,
 				B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */,
 				B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */,
 				B4FC455A2A323282004BD334 /* RegisterPresenter.swift in Sources */,
@@ -509,7 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DC96802A2E110F00D62E39 /* TestLoginPresenter.swift in Sources */,
-				3B9EE9E3ADABAB8A7626159C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */,
+				E611BDD020661D40E6DD7DCA /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

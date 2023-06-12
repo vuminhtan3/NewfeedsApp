@@ -10,6 +10,8 @@
 @testable import NewfeedsApp
 import Alamofire
 import Foundation
+import KeychainSwift
+import MBProgressHUD
 import Swift
 import UIKit
 
@@ -26,12 +28,11 @@ public final class LoginDisplayMock: NewfeedsApp.LoginDisplay, Mockingbird.Mock 
     LoginDisplayMock.mockingbirdContext.sourceLocation = sourceLocation
   }
 
-  // MARK: Mocked `validateFailure`(`message`: String)
-  public func `validateFailure`(`message`: String) -> Void {
-    return self.mockingbirdContext.mocking.didInvoke(Mockingbird.SwiftInvocation(selectorName: "`validateFailure`(`message`: String) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.ArgumentMatcher(`message`)], returnType: Swift.ObjectIdentifier((Void).self))) {
+  // MARK: Mocked `loginSuccess`()
+  public func `loginSuccess`() -> Void {
+    return self.mockingbirdContext.mocking.didInvoke(Mockingbird.SwiftInvocation(selectorName: "`loginSuccess`() -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [], returnType: Swift.ObjectIdentifier((Void).self))) {
       self.mockingbirdContext.recordInvocation($0)
       let mkbImpl = self.mockingbirdContext.stubbing.implementation(for: $0)
-      if let mkbImpl = mkbImpl as? (String) -> Void { return mkbImpl(`message`) }
       if let mkbImpl = mkbImpl as? () -> Void { return mkbImpl() }
       for mkbTargetBox in self.mockingbirdContext.proxy.targets(for: $0) {
         switch mkbTargetBox.target {
@@ -39,7 +40,7 @@ public final class LoginDisplayMock: NewfeedsApp.LoginDisplay, Mockingbird.Mock 
           break
         case .object(let mkbObject):
           guard var mkbObject = mkbObject as? MockingbirdSupertype else { break }
-          let mkbValue: Void = mkbObject.`validateFailure`(message: `message`)
+          let mkbValue: Void = mkbObject.`loginSuccess`()
           self.mockingbirdContext.proxy.updateTarget(&mkbObject, in: mkbTargetBox)
           return mkbValue
         }
@@ -49,8 +50,89 @@ public final class LoginDisplayMock: NewfeedsApp.LoginDisplay, Mockingbird.Mock 
     }
   }
 
-  public func `validateFailure`(`message`: @autoclosure () -> String) -> Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (String) -> Void, Void> {
-    return Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (String) -> Void, Void>(context: self.mockingbirdContext, invocation: Mockingbird.SwiftInvocation(selectorName: "`validateFailure`(`message`: String) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.resolve(`message`)], returnType: Swift.ObjectIdentifier((Void).self)))
+  public func `loginSuccess`() -> Mockingbird.Mockable<Mockingbird.FunctionDeclaration, () -> Void, Void> {
+    return Mockingbird.Mockable<Mockingbird.FunctionDeclaration, () -> Void, Void>(context: self.mockingbirdContext, invocation: Mockingbird.SwiftInvocation(selectorName: "`loginSuccess`() -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [], returnType: Swift.ObjectIdentifier((Void).self)))
+  }
+
+  // MARK: Mocked `showLoading`(`isShow`: Bool)
+  public func `showLoading`(`isShow`: Bool) -> Void {
+    return self.mockingbirdContext.mocking.didInvoke(Mockingbird.SwiftInvocation(selectorName: "`showLoading`(`isShow`: Bool) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.ArgumentMatcher(`isShow`)], returnType: Swift.ObjectIdentifier((Void).self))) {
+      self.mockingbirdContext.recordInvocation($0)
+      let mkbImpl = self.mockingbirdContext.stubbing.implementation(for: $0)
+      if let mkbImpl = mkbImpl as? (Bool) -> Void { return mkbImpl(`isShow`) }
+      if let mkbImpl = mkbImpl as? () -> Void { return mkbImpl() }
+      for mkbTargetBox in self.mockingbirdContext.proxy.targets(for: $0) {
+        switch mkbTargetBox.target {
+        case .super:
+          break
+        case .object(let mkbObject):
+          guard var mkbObject = mkbObject as? MockingbirdSupertype else { break }
+          let mkbValue: Void = mkbObject.`showLoading`(isShow: `isShow`)
+          self.mockingbirdContext.proxy.updateTarget(&mkbObject, in: mkbTargetBox)
+          return mkbValue
+        }
+      }
+      if let mkbValue = self.mockingbirdContext.stubbing.defaultValueProvider.value.provideValue(for: (Void).self) { return mkbValue }
+      self.mockingbirdContext.stubbing.failTest(for: $0, at: self.mockingbirdContext.sourceLocation)
+    }
+  }
+
+  public func `showLoading`(`isShow`: @autoclosure () -> Bool) -> Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (Bool) -> Void, Void> {
+    return Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (Bool) -> Void, Void>(context: self.mockingbirdContext, invocation: Mockingbird.SwiftInvocation(selectorName: "`showLoading`(`isShow`: Bool) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.resolve(`isShow`)], returnType: Swift.ObjectIdentifier((Void).self)))
+  }
+
+  // MARK: Mocked `loginValidateFailure`(`field`: NewfeedsApp.LoginFormField, `message`: String)
+  public func `loginValidateFailure`(`field`: NewfeedsApp.LoginFormField, `message`: String) -> Void {
+    return self.mockingbirdContext.mocking.didInvoke(Mockingbird.SwiftInvocation(selectorName: "`loginValidateFailure`(`field`: NewfeedsApp.LoginFormField, `message`: String) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.ArgumentMatcher(`field`), Mockingbird.ArgumentMatcher(`message`)], returnType: Swift.ObjectIdentifier((Void).self))) {
+      self.mockingbirdContext.recordInvocation($0)
+      let mkbImpl = self.mockingbirdContext.stubbing.implementation(for: $0)
+      if let mkbImpl = mkbImpl as? (NewfeedsApp.LoginFormField, String) -> Void { return mkbImpl(`field`, `message`) }
+      if let mkbImpl = mkbImpl as? () -> Void { return mkbImpl() }
+      for mkbTargetBox in self.mockingbirdContext.proxy.targets(for: $0) {
+        switch mkbTargetBox.target {
+        case .super:
+          break
+        case .object(let mkbObject):
+          guard var mkbObject = mkbObject as? MockingbirdSupertype else { break }
+          let mkbValue: Void = mkbObject.`loginValidateFailure`(field: `field`, message: `message`)
+          self.mockingbirdContext.proxy.updateTarget(&mkbObject, in: mkbTargetBox)
+          return mkbValue
+        }
+      }
+      if let mkbValue = self.mockingbirdContext.stubbing.defaultValueProvider.value.provideValue(for: (Void).self) { return mkbValue }
+      self.mockingbirdContext.stubbing.failTest(for: $0, at: self.mockingbirdContext.sourceLocation)
+    }
+  }
+
+  public func `loginValidateFailure`(`field`: @autoclosure () -> NewfeedsApp.LoginFormField, `message`: @autoclosure () -> String) -> Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (NewfeedsApp.LoginFormField, String) -> Void, Void> {
+    return Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (NewfeedsApp.LoginFormField, String) -> Void, Void>(context: self.mockingbirdContext, invocation: Mockingbird.SwiftInvocation(selectorName: "`loginValidateFailure`(`field`: NewfeedsApp.LoginFormField, `message`: String) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.resolve(`field`), Mockingbird.resolve(`message`)], returnType: Swift.ObjectIdentifier((Void).self)))
+  }
+
+  // MARK: Mocked `loginFailure`(`errorMsg`: String?)
+  public func `loginFailure`(`errorMsg`: String?) -> Void {
+    return self.mockingbirdContext.mocking.didInvoke(Mockingbird.SwiftInvocation(selectorName: "`loginFailure`(`errorMsg`: String?) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.ArgumentMatcher(`errorMsg`)], returnType: Swift.ObjectIdentifier((Void).self))) {
+      self.mockingbirdContext.recordInvocation($0)
+      let mkbImpl = self.mockingbirdContext.stubbing.implementation(for: $0)
+      if let mkbImpl = mkbImpl as? (String?) -> Void { return mkbImpl(`errorMsg`) }
+      if let mkbImpl = mkbImpl as? () -> Void { return mkbImpl() }
+      for mkbTargetBox in self.mockingbirdContext.proxy.targets(for: $0) {
+        switch mkbTargetBox.target {
+        case .super:
+          break
+        case .object(let mkbObject):
+          guard var mkbObject = mkbObject as? MockingbirdSupertype else { break }
+          let mkbValue: Void = mkbObject.`loginFailure`(errorMsg: `errorMsg`)
+          self.mockingbirdContext.proxy.updateTarget(&mkbObject, in: mkbTargetBox)
+          return mkbValue
+        }
+      }
+      if let mkbValue = self.mockingbirdContext.stubbing.defaultValueProvider.value.provideValue(for: (Void).self) { return mkbValue }
+      self.mockingbirdContext.stubbing.failTest(for: $0, at: self.mockingbirdContext.sourceLocation)
+    }
+  }
+
+  public func `loginFailure`(`errorMsg`: @autoclosure () -> String?) -> Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (String?) -> Void, Void> {
+    return Mockingbird.Mockable<Mockingbird.FunctionDeclaration, (String?) -> Void, Void>(context: self.mockingbirdContext, invocation: Mockingbird.SwiftInvocation(selectorName: "`loginFailure`(`errorMsg`: String?) -> Void", selectorType: Mockingbird.SelectorType.method, arguments: [Mockingbird.resolve(`errorMsg`)], returnType: Swift.ObjectIdentifier((Void).self)))
   }
 }
 

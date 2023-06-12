@@ -82,10 +82,12 @@ extension RegisterViewController: RegisterDisplay {
     }
    
     func registerSuccess() {
-        let alert = UIAlertController(title: "Register Success", message: "Register successfull, back to login", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(title: "Register Success", message: "Register successfull, go to homepage", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.routeToMain()
+        }))
         self.present(alert, animated: true)
-        print("Register successfull")
+        
     }
     
     func registerFailure(errorMsg: String?) {
@@ -100,5 +102,16 @@ extension RegisterViewController: RegisterDisplay {
         } else {
             MBProgressHUD.hide(for: self.view, animated: true)
         }
+    }
+    
+    private func routeToMain() {
+        //Chuyển tới màn hình chính
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC") as! HomepageViewController
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
+        
+        window.rootViewController = homepageVC
+        window.makeKeyAndVisible()
+        
     }
 }
