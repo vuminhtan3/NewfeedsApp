@@ -19,7 +19,6 @@ class HomepageViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         self.showLoading(isShow: true)
         AuthService.share.clearAll()
-        routeToLogin()
     }
     private func routeToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

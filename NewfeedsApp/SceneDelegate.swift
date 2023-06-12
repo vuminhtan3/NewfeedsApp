@@ -52,10 +52,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func routeToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-        
+        let nav = UINavigationController(rootViewController: loginVC)
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
-        
-        window.rootViewController = loginVC
+        print(nav)
+        window.rootViewController = nav
         window.makeKeyAndVisible()
     }
     

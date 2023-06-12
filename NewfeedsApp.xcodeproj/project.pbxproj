@@ -87,11 +87,9 @@
 		B4FC45662A3355E9004BD334 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B4FC45692A335B56004BD334 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
-		BCF657CF91DA77ECCC2B5C26 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp_NewfeedsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
-		FD0E22D1FC1859A1EB178B99 /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,13 +475,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -498,13 +492,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NewfeedsApp-NewfeedsAppTests/Pods-NewfeedsApp-NewfeedsAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

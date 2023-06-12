@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 }

@@ -69,17 +69,16 @@ class LoginViewController: UIViewController {
     private func routeToMain() {
         //Chuyển tới màn hình chính
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC") as! HomepageViewController
-        homepageVC.modalPresentationStyle = .fullScreen
-        self.present(homepageVC, animated: true)
+        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC")
+        navigationController?.pushViewController(homepageVC, animated: true)
         
     }
     
     private func routeToRegister() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
-        registerVC.modalPresentationStyle = .fullScreen
-        self.present(registerVC, animated: true)
+        let registerVC = mainStoryboard.instantiateViewController(withIdentifier: "registerVC")
+        navigationController?.pushViewController(registerVC, animated: true)
+        
     }
 }
 
