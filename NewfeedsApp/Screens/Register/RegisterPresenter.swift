@@ -71,8 +71,6 @@ class RegisterPresenterImpl: RegisterPresenter {
         return isValid
     }
     
-    
-    
     func register(username: String, nickname: String, password: String, confirmPassword: String) {
         let isValid = validateForm(username: username, password: password, confirmPassword: confirmPassword)
         
@@ -84,6 +82,7 @@ class RegisterPresenterImpl: RegisterPresenter {
             guard let self = self else {return}
             self.registerVC.showLoading(isShow: false)
             if let accessToken = registerEntity.accessToken, !accessToken.isEmpty {
+                AuthService.share.accessToken = accessToken
                 self.registerVC.registerSuccess()
             } else {
                 self.registerVC.registerFailure(errorMsg: "Something went wrong!")

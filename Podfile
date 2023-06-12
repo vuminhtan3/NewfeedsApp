@@ -6,6 +6,7 @@ target 'NewfeedsApp' do
   use_frameworks!
   pod 'Alamofire'
   pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'KeychainSwift', '~> 20.0'
   # Pods for NewfeedsApp
   
   target 'NewfeedsAppTests' do

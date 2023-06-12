@@ -82,6 +82,8 @@ extension TutorialViewController: UICollectionViewDataSource {
             guard let self = self else {return}
             
             if indexPath.row + 1 == self.dataSource.count {
+                UserDefaultsSingleton.shared.completedTutorial = true
+                
                 self.routeToAuthNavigation()
 //                print("index: \(indexPath.row), currentPage: \(self.currentPage)")
             } else {

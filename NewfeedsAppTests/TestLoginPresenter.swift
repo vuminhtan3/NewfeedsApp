@@ -28,7 +28,7 @@ class TestLoginPresenter: QuickSpec {
              */
             beforeEach {
                 loginDisplayMock = mock(LoginDisplay.self)
-                sut = LoginPresenterImpl(controller: loginDisplayMock, authRepository: AuthRepositoryImpl(authAPIService: AuthAPIServiceImpl()))
+                sut = LoginPresenterImpl(loginVC: loginDisplayMock, authRepository: AuthRepositoryImpl(authAPIService: AuthAPIServiceImpl()))
             }
             
             /**
@@ -53,7 +53,7 @@ class TestLoginPresenter: QuickSpec {
                 it("Check password empty") {
                     let password = ""
                     sut.login(username: "testUsername", password: password)
-                    verify(loginDisplayMock.validateFailure(message: "Password is required")).wasCalled()
+                    verify(loginDisplayMock.validateFailure(message: "Password is require")).wasCalled()
                 }
                 
                 

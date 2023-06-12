@@ -56,7 +56,6 @@ class LoginViewController: UIViewController {
         let username = usernameTF.text ?? ""
         let password = passwordTF.text ?? ""
         presenter.login(username: username, password: password)
-        
     }
     
     @IBAction func forgotPassword(_ sender: UIButton) {
@@ -69,7 +68,11 @@ class LoginViewController: UIViewController {
     
     private func routeToMain() {
         //Chuyển tới màn hình chính
-        print("Chuyển tới màn hình chính")
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC") as! HomepageViewController
+        homepageVC.modalPresentationStyle = .fullScreen
+        self.present(homepageVC, animated: true)
+        
     }
     
     private func routeToRegister() {
@@ -92,21 +95,11 @@ extension LoginViewController: LoginDisplay {
         }
     }
     
-   
     func loginSuccess() {
         routeToMain()
+        
     }
-    
-//    func validateFailure(feild: String, message: String) {
-//        if feild == "username" {
-//            usernameFailureLb.isHidden = false
-//            usernameFailureLb.text = message
-//        } else {
-//            passwordFailureLb.isHidden = false
-//            passwordFailureLb.text = message
-//        }
-//    }
-    
+
     func loginFailure(errorMsg: String?) {
         let alert = UIAlertController(title: "Login failure", message: errorMsg ?? "Something went wrong", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

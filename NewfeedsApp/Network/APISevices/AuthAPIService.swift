@@ -23,6 +23,10 @@ protocol AuthAPIService {
 }
 
 class AuthAPIServiceImpl: AuthAPIService {
+    
+    /**
+     Register
+     */
     func register(username: String, nickname: String, password: String, confirmPassword: String, success: ((RegisterEntity) -> Void)?, failure: ((APIError?) -> Void)?) {
         AF.request("https://learn-api-3t7z.onrender.com/register",
                    method: .post,
@@ -45,7 +49,9 @@ class AuthAPIServiceImpl: AuthAPIService {
         }
     }
     
-    
+    /**
+     Login
+     */
     func login(username: String,
                password: String,
                success: ((LoginEntity) -> Void)?,

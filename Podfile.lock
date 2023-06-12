@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.7.1)
+  - KeychainSwift (20.0.0)
   - MBProgressHUD (1.2.0)
   - MockingbirdFramework (0.20.0)
   - Nimble (12.0.1)
@@ -7,6 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - KeychainSwift (~> 20.0)
   - MBProgressHUD (~> 1.2.0)
   - MockingbirdFramework (~> 0.20)
   - Nimble
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - KeychainSwift
     - MBProgressHUD
     - MockingbirdFramework
     - Nimble
@@ -22,11 +25,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MockingbirdFramework: 54e35fbbb47b806c1a1fae2cf3ef99f6eceb55e5
   Nimble: b279b3ca9e094508778aab5c76417be158d3ad04
   Quick: 2ba401c7a6428dd2aa191fbff5cb1f89afcd5ca9
 
-PODFILE CHECKSUM: e9764c8af0952a316d007d10834bd6eaa997d381
+PODFILE CHECKSUM: 9dab2220c8584820461d941d5166549494048671
 
 COCOAPODS: 1.11.3
