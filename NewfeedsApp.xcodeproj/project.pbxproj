@@ -23,6 +23,7 @@
 		B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */; };
 		B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306242A2B951600290DCE /* RegisterViewController.swift */; };
 		B4B306272A2B952300290DCE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B306262A2B952300290DCE /* LoginViewController.swift */; };
+		B4BA52BD2A38EA5A00EB2FFE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BA52BC2A38EA5A00EB2FFE /* Extension.swift */; };
 		B4DC967D2A2E102800D62E39 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC967C2A2E102800D62E39 /* LoginPresenter.swift */; };
 		B4DC96802A2E110F00D62E39 /* TestLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC967F2A2E110F00D62E39 /* TestLoginPresenter.swift */; };
 		B4DC96822A2E21D500D62E39 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC96812A2E21D500D62E39 /* AuthRepository.swift */; };
@@ -36,6 +37,12 @@
 		B4FC45652A334A99004BD334 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45642A334A99004BD334 /* UserDefaultService.swift */; };
 		B4FC45672A3355E9004BD334 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45662A3355E9004BD334 /* AuthService.swift */; };
 		B4FC456A2A335B56004BD334 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45692A335B56004BD334 /* HomepageViewController.swift */; };
+		B4FC45702A38CCAD004BD334 /* CustomStyleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC456F2A38CCAD004BD334 /* CustomStyleTabBarController.swift */; };
+		B4FC45722A38CDC1004BD334 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45712A38CDC1004BD334 /* MainTabBarViewController.swift */; };
+		B4FC45742A38CDF5004BD334 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45732A38CDF5004BD334 /* AppNavigationController.swift */; };
+		B4FC45792A38D4FD004BD334 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC45782A38D4FD004BD334 /* ProfileViewController.swift */; };
+		B4FC457B2A38D513004BD334 /* PinPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC457A2A38D513004BD334 /* PinPostViewController.swift */; };
+		B4FC457D2A38D57B004BD334 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FC457C2A38D57B004BD334 /* FriendViewController.swift */; };
 		E13975E2C04AB087241B0F44 /* Pods_NewfeedsApp_NewfeedsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */; };
 		E611BDD020661D40E6DD7DCA /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +78,7 @@
 		B4A6E2B82A2A1A8D007F809B /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		B4B306242A2B951600290DCE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B4B306262A2B952300290DCE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B4BA52BC2A38EA5A00EB2FFE /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		B4DC96732A2E0D4E00D62E39 /* NewfeedsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewfeedsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DC967C2A2E102800D62E39 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		B4DC967E2A2E110F00D62E39 /* NewfeedsAppTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewfeedsAppTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -86,7 +94,13 @@
 		B4FC45642A334A99004BD334 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		B4FC45662A3355E9004BD334 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B4FC45692A335B56004BD334 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
-		B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
+		B4FC456F2A38CCAD004BD334 /* CustomStyleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyleTabBarController.swift; sourceTree = "<group>"; };
+		B4FC45712A38CDC1004BD334 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		B4FC45732A38CDF5004BD334 /* AppNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
+		B4FC45782A38D4FD004BD334 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B4FC457A2A38D513004BD334 /* PinPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPostViewController.swift; sourceTree = "<group>"; };
+		B4FC457C2A38D57B004BD334 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
+		B67652D634A49D73C8BB386C /* NewfeedsAppTests-NewfeedsAppMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; path = "MockingbirdMocks/NewfeedsAppTests-NewfeedsAppMocks.generated.swift"; sourceTree = "<group>"; };
 		E59FFE6D9FC0939AA6C21E3D /* Pods_NewfeedsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10041C35AB43531E4D986A7 /* Pods_NewfeedsApp_NewfeedsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewfeedsApp_NewfeedsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A1B3F29A78105560D452E0 /* Pods-NewfeedsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewfeedsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewfeedsApp/Pods-NewfeedsApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +198,9 @@
 		B4A6E2AF2A2A1A8D007F809B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4FC45772A38D4B7004BD334 /* Profile */,
+				B4FC45762A38D4A8004BD334 /* PinPost */,
+				B4FC45752A38D490004BD334 /* Friend */,
 				B4FC45682A335B37004BD334 /* Homepage */,
 				B4FC45582A322ED4004BD334 /* Register */,
 				B4B306232A2B94DA00290DCE /* Login */,
@@ -279,7 +296,9 @@
 		B4FC455E2A324D1E004BD334 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B4FC45732A38CDF5004BD334 /* AppNavigationController.swift */,
 				B4FC455C2A324D18004BD334 /* Validator.swift */,
+				B4BA52BC2A38EA5A00EB2FFE /* Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -297,8 +316,34 @@
 			isa = PBXGroup;
 			children = (
 				B4FC45692A335B56004BD334 /* HomepageViewController.swift */,
+				B4FC456F2A38CCAD004BD334 /* CustomStyleTabBarController.swift */,
+				B4FC45712A38CDC1004BD334 /* MainTabBarViewController.swift */,
 			);
 			path = Homepage;
+			sourceTree = "<group>";
+		};
+		B4FC45752A38D490004BD334 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				B4FC457C2A38D57B004BD334 /* FriendViewController.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		B4FC45762A38D4A8004BD334 /* PinPost */ = {
+			isa = PBXGroup;
+			children = (
+				B4FC457A2A38D513004BD334 /* PinPostViewController.swift */,
+			);
+			path = PinPost;
+			sourceTree = "<group>";
+		};
+		B4FC45772A38D4B7004BD334 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B4FC45782A38D4FD004BD334 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,20 +559,27 @@
 				B4DC96822A2E21D500D62E39 /* AuthRepository.swift in Sources */,
 				B4DC96862A2E227800D62E39 /* LoginEntity.swift in Sources */,
 				B4A6E2BC2A2A1A8D007F809B /* ItemSection2CollectionViewCell.swift in Sources */,
+				B4FC457B2A38D513004BD334 /* PinPostViewController.swift in Sources */,
 				B4A6E2C02A2A1A8D007F809B /* TutorialViewController.swift in Sources */,
 				B4FC45672A3355E9004BD334 /* AuthService.swift in Sources */,
 				B4A6E2BF2A2A1A8D007F809B /* ItemSection1CollectionViewCell.swift in Sources */,
+				B4FC45722A38CDC1004BD334 /* MainTabBarViewController.swift in Sources */,
 				B4DC967D2A2E102800D62E39 /* LoginPresenter.swift in Sources */,
 				B4FC45652A334A99004BD334 /* UserDefaultService.swift in Sources */,
 				B4FC455D2A324D18004BD334 /* Validator.swift in Sources */,
 				B4B306252A2B951600290DCE /* RegisterViewController.swift in Sources */,
 				B4A6E2A02A2A17B5007F809B /* ViewController.swift in Sources */,
 				B4A6E29C2A2A17B5007F809B /* AppDelegate.swift in Sources */,
+				B4FC457D2A38D57B004BD334 /* FriendViewController.swift in Sources */,
 				B4FC45622A325BCF004BD334 /* RegisterEntity.swift in Sources */,
 				B4A6E2BD2A2A1A8D007F809B /* TutorialCollectionViewCell.swift in Sources */,
 				B4FC456A2A335B56004BD334 /* HomepageViewController.swift in Sources */,
 				B4FC45572A30B2A6004BD334 /* NetworkConstant.swift in Sources */,
 				B4A6E29E2A2A17B5007F809B /* SceneDelegate.swift in Sources */,
+				B4BA52BD2A38EA5A00EB2FFE /* Extension.swift in Sources */,
+				B4FC45742A38CDF5004BD334 /* AppNavigationController.swift in Sources */,
+				B4FC45792A38D4FD004BD334 /* ProfileViewController.swift in Sources */,
+				B4FC45702A38CCAD004BD334 /* CustomStyleTabBarController.swift in Sources */,
 				B4FC455A2A323282004BD334 /* RegisterPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

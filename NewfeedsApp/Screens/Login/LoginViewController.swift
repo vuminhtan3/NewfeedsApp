@@ -69,8 +69,8 @@ class LoginViewController: UIViewController {
     private func routeToMain() {
         //Chuyển tới màn hình chính
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC")
-        navigationController?.pushViewController(homepageVC, animated: true)
+        let mainTabBarVC = mainStoryboard.instantiateViewController(withIdentifier: "mainTabBarVC")
+        navigationController?.pushViewController(mainTabBarVC, animated: true)
         
     }
     
