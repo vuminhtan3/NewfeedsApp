@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         (UIApplication.shared.delegate as? AppDelegate)?.window = window
         
-        let isCompletedTutorial = UserDefaultsSingleton.shared.completedTutorial
+        let isCompletedTutorial = UserDefaultsService.shared.completedTutorial
         if isCompletedTutorial {
             let isLoggedIn = AuthService.share.isLoggedIn
             if isLoggedIn {

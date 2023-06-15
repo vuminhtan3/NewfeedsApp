@@ -14,7 +14,7 @@ class MainTabBarViewController: ESTabBarController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homepageVC")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
-            title: "Home",
+            title: "",
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill"))
         let nav = AppNavigationController(rootViewController: viewController)
@@ -25,7 +25,7 @@ class MainTabBarViewController: ESTabBarController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "friendVC")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
-            title: "Friend",
+            title: "",
             image: UIImage(systemName: "person.2"),
             selectedImage: UIImage(systemName: "person.2.fill"))
         let nav = AppNavigationController(rootViewController: viewController)
@@ -36,7 +36,7 @@ class MainTabBarViewController: ESTabBarController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pinPostVC")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
-            title: "Pin Post",
+            title: "",
             image: UIImage(systemName: "pin"),
             selectedImage: UIImage(systemName: "pin.fill"))
         let nav = AppNavigationController(rootViewController: viewController)
@@ -47,7 +47,7 @@ class MainTabBarViewController: ESTabBarController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileVC")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
-            title: "Profile",
+            title: "",
             image: UIImage(systemName: "person.circle"),
             selectedImage: UIImage(systemName: "person.circle.fill"))
         let nav = AppNavigationController(rootViewController: viewController)
@@ -63,7 +63,7 @@ class MainTabBarViewController: ESTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().backgroundColor = .clear
         UITabBar.appearance().tintColor = .clear
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
