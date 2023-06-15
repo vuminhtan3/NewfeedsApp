@@ -174,7 +174,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="registerBtnTapped:" destination="iMd-bm-OCZ" eventType="touchUpInside" id="Jeh-Tg-2X6"/>
-                                            <segue destination="QeR-Tt-QbN" kind="presentation" modalPresentationStyle="fullScreen" id="eHH-Fi-Mwd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -346,7 +345,7 @@
             </objects>
             <point key="canvasLocation" x="2591.6030534351144" y="-27.464788732394368"/>
         </scene>
-        <!--Homepage View Controller-->
+        <!--Item-->
         <scene sceneID="8er-az-Ddn">
             <objects>
                 <viewController storyboardIdentifier="homepageVC" id="moZ-Id-E3j" customClass="HomepageViewController" customModule="NewfeedsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -354,33 +353,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day la homepage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg0-l3-eF5">
-                                <rect key="frame" x="50" y="383" width="292" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-2z-WhN">
-                                <rect key="frame" x="158" y="635" width="78" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-2z-WhN">
+                                <rect key="frame" x="157.66666666666666" y="783" width="78" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Logout"/>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="moZ-Id-E3j" eventType="touchUpInside" id="x88-hF-0U9"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4u2-zh-6mp">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="778"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bL3-QH-tgQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4u2-zh-6mp" firstAttribute="leading" secondItem="bL3-QH-tgQ" secondAttribute="leading" id="AjR-7X-mV9"/>
+                            <constraint firstItem="KeD-2z-WhN" firstAttribute="top" secondItem="4u2-zh-6mp" secondAttribute="bottom" constant="5" id="Y6d-de-3tA"/>
+                            <constraint firstItem="KeD-2z-WhN" firstAttribute="centerX" secondItem="MOB-7X-xxE" secondAttribute="centerX" id="dV8-KX-eAG"/>
+                            <constraint firstItem="KeD-2z-WhN" firstAttribute="bottom" secondItem="bL3-QH-tgQ" secondAttribute="bottom" id="eK4-tw-Iuj"/>
+                            <constraint firstItem="4u2-zh-6mp" firstAttribute="trailing" secondItem="bL3-QH-tgQ" secondAttribute="trailing" id="olM-0J-Nel"/>
+                            <constraint firstItem="4u2-zh-6mp" firstAttribute="top" secondItem="MOB-7X-xxE" secondAttribute="top" id="qgB-1h-nGE"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="6vK-V9-5Y2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcF-H9-cXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417.5572519083967" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="4383.9694656488546" y="-711.26760563380287"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="EbO-15-wIb">
+            <objects>
+                <viewController storyboardIdentifier="friendVC" id="TTD-d3-7uQ" customClass="FriendViewController" customModule="NewfeedsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TJ4-UV-hlj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ldd-3u-TJl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="vUc-BZ-nfb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ph-Xi-h0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5306" y="-421"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="7mY-W5-sYE">
+            <objects>
+                <viewController storyboardIdentifier="profileVC" id="RVg-Ts-Wuq" customClass="ProfileViewController" customModule="NewfeedsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aJ7-Qq-h14">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TGinTW" translatesAutoresizingMaskIntoConstraints="NO" id="0mx-No-piQ">
+                                <rect key="frame" x="121" y="113" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="75"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vu Minh Tan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFT-or-MOd">
+                                <rect key="frame" x="113" y="295" width="169" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1I-IU-xGp">
+                                <rect key="frame" x="219" y="229" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <buttonConfiguration key="configuration" style="filled" image="camera.fill" catalog="system">
+                                    <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwW-An-fm3">
+                                <rect key="frame" x="353" y="59" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system" title="">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xzg-pH-3ae"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="FXs-Sp-vGr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iBL-Om-Fzk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4383.9694656488546" y="534.50704225352115"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="mXf-Jh-WOw">
+            <objects>
+                <viewController storyboardIdentifier="pinPostVC" id="3dh-0g-aYH" customClass="PinPostViewController" customModule="NewfeedsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wmo-1N-lQ1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lCO-jJ-ur4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="5qI-P4-nrj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhu-Ev-URK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5325" y="287"/>
+        </scene>
+        <!--Main Tab Bar View Controller-->
+        <scene sceneID="mQu-JU-3rl">
+            <objects>
+                <tabBarController storyboardIdentifier="mainTabBarVC" id="TnH-6z-z88" customClass="MainTabBarViewController" customModule="NewfeedsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eRw-Qi-3al">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcX-vQ-Tdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3445" y="-27"/>
         </scene>
     </scenes>
     <resources>
+        <image name="TGinTW" width="2048" height="1540"/>
+        <image name="camera.fill" catalog="system" width="128" height="93"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="logo" width="368" height="206"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

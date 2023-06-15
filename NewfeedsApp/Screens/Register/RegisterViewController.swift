@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -107,11 +107,12 @@ extension RegisterViewController: RegisterDisplay {
     private func routeToMain() {
         //Chuyển tới màn hình chính
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homepageVC = mainStoryboard.instantiateViewController(withIdentifier: "homepageVC") as! HomepageViewController
-        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
-        
-        window.rootViewController = homepageVC
-        window.makeKeyAndVisible()
+        let mainTabBarVC = mainStoryboard.instantiateViewController(withIdentifier: "mainTabBarVC")
+        navigationController?.pushViewController(mainTabBarVC, animated: true)
+//        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
+//
+//        window.rootViewController = homepageVC
+//        window.makeKeyAndVisible()
         
     }
 }

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.7.1)
+  - ESTabBarController-swift (2.8.0)
   - KeychainSwift (20.0.0)
   - MBProgressHUD (1.2.0)
   - MockingbirdFramework (0.20.0)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - ESTabBarController-swift
   - KeychainSwift (~> 20.0)
   - MBProgressHUD (~> 1.2.0)
   - MockingbirdFramework (~> 0.20)
@@ -17,6 +19,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ESTabBarController-swift
     - KeychainSwift
     - MBProgressHUD
     - MockingbirdFramework
@@ -25,12 +28,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
   KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MockingbirdFramework: 54e35fbbb47b806c1a1fae2cf3ef99f6eceb55e5
   Nimble: b279b3ca9e094508778aab5c76417be158d3ad04
   Quick: 2ba401c7a6428dd2aa191fbff5cb1f89afcd5ca9
 
-PODFILE CHECKSUM: 9dab2220c8584820461d941d5166549494048671
+PODFILE CHECKSUM: 44d0cd5c1ded573233bfd58cd427f9d66d500488
 
 COCOAPODS: 1.11.3

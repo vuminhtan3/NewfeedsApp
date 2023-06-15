@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if isCompletedTutorial {
             let isLoggedIn = AuthService.share.isLoggedIn
             if isLoggedIn {
-                routeToHomepage()
+                routeToMain()
             } else {
                 routeToLogin()
             }
@@ -52,20 +52,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func routeToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-        
+        let nav = UINavigationController(rootViewController: loginVC)
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
-        
-        window.rootViewController = loginVC
+        window.rootViewController = nav
         window.makeKeyAndVisible()
     }
     
-    private func routeToHomepage() {
+    private func routeToMain() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homepageVC = storyboard.instantiateViewController(withIdentifier: "homepageVC") as! HomepageViewController
+        let mainTabBarVC = storyboard.instantiateViewController(withIdentifier: "mainTabBarVC")
         
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
         
-        window.rootViewController = homepageVC
+        window.rootViewController = mainTabBarVC
         window.makeKeyAndVisible()
     }
     

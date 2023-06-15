@@ -24,10 +24,11 @@ class HomepageViewController: UIViewController {
     private func routeToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+//        navigationController?.popToRootViewController(animated: true)
+        let nav = UINavigationController(rootViewController: loginVC)
         
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
-        
-        window.rootViewController = loginVC
+        window.rootViewController = nav
         window.makeKeyAndVisible()
     }
 
