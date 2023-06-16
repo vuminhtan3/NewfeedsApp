@@ -116,7 +116,8 @@ extension HomepageViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.row == posts.count - 1 {
-            self.presenter.loadMorePosts()        }
+            self.presenter.loadMorePosts()
+        }
     }
 }
 
@@ -142,7 +143,7 @@ extension HomepageViewController: HomepageDisplay {
     }
     
     func loadmorePosts(posts: [PostEntity]) {
-        self.posts?.insert(contentsOf: posts, at: 0)
+        self.posts?.append(contentsOf: posts)
         tableView.reloadData()
     }
     

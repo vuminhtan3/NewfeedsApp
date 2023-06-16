@@ -7,47 +7,44 @@
 
 import Foundation
 struct PostEntity: Decodable {
-    var id: String?
-    var title: String?
-    var address: String?
-    var content: String?
-    var author: UserEntity?
-    var createAt: String?
-    var updateAt: String?
+    let title, content, address: String?
+    let author: Author?
+    let createdAt, updatedAt, id: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, title, address, content, author
-        case createAt = "create_at"
-        case updateAt = "update_at"
+        case title, content, address, author
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case id
     }
 }
 
-struct UserEntity: Decodable {
-    var id: String?
-    var username: String?
-    var isAdmin: Bool
-    var createAt: String?
-    var updateAt: String?
-    var profile: ProfileEntity?
-    
+// MARK: - Author
+struct Author: Codable {
+    let username, createdAt, updatedAt: String?
+    let profile: Profile?
+    let isAdmin: Bool
+    let id: String?
+
     enum CodingKeys: String, CodingKey {
-        case id, username, profile
-        case createAt = "create_at"
-        case updateAt = "update_at"
+        case username
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case profile
         case isAdmin = "is_admin"
+        case id
     }
 }
 
-struct ProfileEntity: Decodable {
-    var bio: String?
-    var createAt: String
-    var updateAt: String
-    var gender: String?
-    var avatar: String?
-    
+// MARK: - Profile
+struct Profile: Codable {
+    let bio, createdAt, updatedAt, gender: String?
+    let avatar: String?
+
     enum CodingKeys: String, CodingKey {
-        case bio, gender, avatar
-        case createAt = "create_at"
-        case updateAt = "update_at"
+        case bio
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case gender, avatar
     }
 }

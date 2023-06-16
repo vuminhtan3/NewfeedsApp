@@ -46,6 +46,7 @@ class HomepagePresenterImpl: HomepagePresenter {
         switch apiType {
         case .getInit:
             homepageVC.showLoading(isShow: true)
+            
         default:
             break
         }
@@ -53,7 +54,7 @@ class HomepagePresenterImpl: HomepagePresenter {
             guard let self = self else {return}
             switch apiType {
             case .getInit:
-                self.homepageVC.showLoading(isShow: true)
+                self.homepageVC.showLoading(isShow: false)
                 self.homepageVC.getPosts(posts: response.results)
             case .loadmore:
                 self.homepageVC.loadmorePosts(posts: response.results)

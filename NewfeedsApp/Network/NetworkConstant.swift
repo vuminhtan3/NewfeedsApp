@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 struct NetworkConstant {
-    static let domain = "https://learn-api-3t7z.onrender.com/login"
+    static let domain = "https://learn-api-3t7z.onrender.com"
 }
 
 struct APIError {

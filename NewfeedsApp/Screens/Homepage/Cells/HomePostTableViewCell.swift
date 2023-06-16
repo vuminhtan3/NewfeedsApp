@@ -49,14 +49,15 @@ class HomePostTableViewCell: UITableViewCell {
         contentLb.text = post.content
         favouriteCountLb.text = "999"
         commentCountLb.text = "999 comments"
-        if let createTime = post.createAt {
+        
+        if let createTime = post.createdAt {
             let dateFormater = DateFormatter()
             dateFormater.locale = Locale(identifier: "en_US_POSIX")
             dateFormater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             if let date = dateFormater.date(from: createTime) {
                 let resultDateFormater = DateFormatter()
                 resultDateFormater.locale = Locale(identifier: "vi_VN")
-                dateFormater.dateFormat = "dd-MM-yyy HH:mm:ss"
+                resultDateFormater.dateFormat = "dd-MM-yyy HH:mm:ss"
                 createTimeLb.text = resultDateFormater.string(from: date)
             }
         }
