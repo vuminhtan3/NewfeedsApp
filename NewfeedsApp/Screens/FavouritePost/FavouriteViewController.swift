@@ -1,5 +1,5 @@
 //
-//  PinPostViewController.swift
+//  FavouriteViewController.swift
 //  NewfeedsApp
 //
 //  Created by Minh Tan Vu on 13/06/2023.
@@ -9,23 +9,24 @@ import UIKit
 import Alamofire
 import MBProgressHUD
 
-protocol PinPostDisplay {
+protocol FavouriteDisplay {
     func getPosts(posts: [PostEntity])
     func loadmorePosts(posts: [PostEntity])
     func callAPIFailure(errorMsg: String?)
     func showLoading(isShow: Bool)
     func hideRefreshLoading()
-    func pinPost(postID: String)
-    func unPinPostSuccess(postID: String)
+    func getFavouritePostSuccess(postIDs: [String])
     func getPinPostSuccess(postIDs: [String])
+    func favouritePost(postID: String)
+    func unFavouritePostSuccess(postID: String)
 }
 
-class PinPostViewController: UIViewController {
+class FavouriteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     private var posts: [PostEntity]?
-    private var presenter: PinPostPresenter!
+    private var presenter: FavouritePresenter!
     private var refresher = UIRefreshControl()
     
     private var cacheImages = [String: UIImage]()
@@ -39,10 +40,9 @@ class PinPostViewController: UIViewController {
         let pinService = PinAPIServiceImpl()
         let pinRepository = PinRepositoryImpl(pinAPIService: pinService)
         
-        presenter = PinPostPresenterImpl(pinRepository: pinRepository,
-                                         pinPostVC: self,
-                                         favouriteRepository: favouriteRepository)
-        
+        presenter = FavouritePresenterImpl(favouriteRepository: favouriteRepository,
+                                           favouriteVC: self,
+                                           pinRepository: pinRepository)
         super.viewDidLoad()
         setupTableView()
         presenter.getPosts()
@@ -81,13 +81,14 @@ class PinPostViewController: UIViewController {
     }
 }
 
-//MARK: - PinPostDataSource
-extension PinPostViewController: UITableViewDataSource {
+//MARK: - FavouriteDataSource
+extension FavouriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomePostTableViewCell", for: indexPath) as! HomePostTableViewCell
         let post = posts![indexPath.row]
         if let author = post.author, let avatarImg = author.profile?.avatar {
@@ -101,7 +102,7 @@ extension PinPostViewController: UITableViewDataSource {
         } else {
             cell.authorAvatar(image: nil)
         }
-        
+//        let homepageVC = HomepageViewController()
         let isFavourited = self.favouritePostIDs.contains(where: {$0 == post.id})
         let isPinned = self.pinPostIDs.contains(where: {$0 == post.id})
         cell.favouriteButtonActionHandle = { [weak self] in
@@ -137,13 +138,18 @@ extension PinPostViewController: UITableViewDataSource {
     
 }
 
-//MARK: - PinPostDelegate
-extension PinPostViewController: UITableViewDelegate {
+//MARK: - FavouriteDelegate
+extension FavouriteViewController: UITableViewDelegate {
     
 }
 
-//MARK: - PinPostDisplay
-extension PinPostViewController: PinPostDisplay {
+//MARK: - FavouriteDisplay
+extension FavouriteViewController: FavouriteDisplay {
+    
+    func getFavouritePostSuccess(postIDs: [String]) {
+        self.favouritePostIDs = postIDs
+        self.tableView.reloadData()
+    }
     
     func getPinPostSuccess(postIDs: [String]) {
         self.pinPostIDs = postIDs
@@ -180,7 +186,7 @@ extension PinPostViewController: PinPostDisplay {
                                                   y: tableView.frame.midY,
                                                   width: tableView.frame.size.width,
                                                   height: tableView.frame.size.height))
-            messageLb.text = "You haven't pinned any posts yet"
+            messageLb.text = "You haven't favourited any posts yet"
             messageLb.textColor = .black
             messageLb.numberOfLines = 0
             messageLb.textAlignment = .center

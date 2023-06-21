@@ -1,15 +1,17 @@
 //
-//  PostRouter.swift
+//  FavouriteRouter.swift
 //  NewfeedsApp
 //
-//  Created by Minh Tan Vu on 14/06/2023.
+//  Created by Minh Tan Vu on 19/06/2023.
 //
 
 import Foundation
 import Alamofire
 
-enum PostRouter: URLRequestConvertible {
+enum FavouriteRouter: URLRequestConvertible {
     case getPosts(page: Int, pageSize: Int)
+    case favourite(postID: String)
+    case unFavourite(postID: String)
     
     var baseURL: URL {
         return URL(string: NetworkConstant.domain)!
@@ -19,13 +21,21 @@ enum PostRouter: URLRequestConvertible {
         switch self {
         case .getPosts:
             return .get
+        case .favourite:
+            return .post
+        case .unFavourite:
+            return .delete
         }
     }
     
     var path: String {
         switch self {
         case .getPosts:
-            return "posts"
+            return "favorites"
+        case .favourite:
+            return "favorites"
+        case .unFavourite:
+            return "favorites"
         }
     }
     
@@ -36,6 +46,14 @@ enum PostRouter: URLRequestConvertible {
                 "page": page,
                 "pageSize": pageSize
             ]
+        case .favourite(let postID):
+            return [
+                "post_id": postID
+            ]
+        case .unFavourite(let postID):
+            return [
+                "post_id" : postID
+            ]
         default:
             return nil
         }
@@ -43,7 +61,6 @@ enum PostRouter: URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         let url = baseURL.appendingPathComponent(path)
-        
         var request = URLRequest(url: url)
         request.method = method
         
@@ -54,10 +71,21 @@ enum PostRouter: URLRequestConvertible {
                              forHTTPHeaderField: "Authorization")
         }
         
-        switch self.method {
-        case .get:
+//        switch self.method {
+//        case .get:
+//            request = try URLEncoding.default.encode(request, with: parameters)
+//        case .post:
+//            request = try JSONEncoding.default.encode(request, with: parameters)
+//        case .delete:
+//            request = try JSONEncoding.default.encode(request, with: parameters)
+//        default:
+//            request = try JSONEncoding.default.encode(request, with: parameters)
+//        }
+        
+        switch self {
+        case .getPosts, .unFavourite:
             request = try URLEncoding.default.encode(request, with: parameters)
-        default:
+        case .favourite:
             request = try JSONEncoding.default.encode(request, with: parameters)
         }
         request.timeoutInterval = 10

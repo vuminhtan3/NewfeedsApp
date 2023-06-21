@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomePostTableViewCell" rowHeight="254" id="KGk-i7-Jjw" customClass="HomePostTableViewCell" customModule="NewfeedsApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="254" id="KGk-i7-Jjw" customClass="HomePostTableViewCell" customModule="NewfeedsApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="427" height="254"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="427" height="254"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2eK-qu-Wmr">
-                                <rect key="frame" x="20" y="17" width="78" height="74.666666666666686"/>
+                                <rect key="frame" x="20" y="17" width="78" height="74.666666666666671"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2eK-qu-Wmr" secondAttribute="height" multiplier="1:1" id="pq9-g2-Zfb"/>

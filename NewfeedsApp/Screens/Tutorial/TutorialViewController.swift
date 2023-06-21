@@ -58,7 +58,7 @@ class TutorialViewController: UIViewController {
     //Hàm chuyển màn sang register và login
     private func routeToAuthNavigation() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "loginVC")
+        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
 //        navigationController?.pushViewController(loginVC, animated: true)
         let nav = UINavigationController(rootViewController: loginVC)
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}

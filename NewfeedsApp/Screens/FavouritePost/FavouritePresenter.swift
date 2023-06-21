@@ -1,13 +1,13 @@
 //
-//  HomepagePresenter.swift
+//  FavouritePresenter.swift
 //  NewfeedsApp
 //
-//  Created by Minh Tan Vu on 14/06/2023.
+//  Created by Minh Tan Vu on 19/06/2023.
 //
 
 import Foundation
 
-protocol HomepagePresenter {
+protocol FavouritePresenter {
     func getInitData()
     func getPosts()
     func loadMorePosts()
@@ -18,43 +18,37 @@ protocol HomepagePresenter {
     func unPin(postID: String)
 }
 
-class HomepagePresenterImpl: HomepagePresenter {
+class FavouritePresenterImpl: FavouritePresenter {
     
-    private var postRepository: PostRepository
     private var favouriteRepository: FavouriteRepository
+    private var favouriteVC: FavouriteViewController
     private var pinRepository: PinRepository
-    private var homepageVC: HomepageViewController
     
-    init(postRepository: PostRepository, favouriteRepository: FavouriteRepository, pinRepository: PinRepository, homepageVC: HomepageViewController) {
-        self.postRepository = postRepository
+    init(favouriteRepository: FavouriteRepository, favouriteVC: FavouriteViewController, pinRepository: PinRepository) {
         self.favouriteRepository = favouriteRepository
+        self.favouriteVC = favouriteVC
         self.pinRepository = pinRepository
-        self.homepageVC = homepageVC
     }
     
     var currentPage = 1
     var loadMoreAvailable = false
     
     private var apiGroup = DispatchGroup()
-    
     let concurentQueue = DispatchQueue(label: "techmaster.queue.concurrent", attributes: .concurrent)
     
-//    private var favouritePosts = [PostEntity]()
-//    private var pinPosts = [PostEntity]()
-    
     func getInitData() {
-        homepageVC.showLoading(isShow: true)
+        favouriteVC.showLoading(isShow: true)
         
-        getPosts()
+//        getPosts()
         getFavouritePosts()
         getPinPosts()
         
         apiGroup.notify(queue: .main) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.homepageVC.showLoading(isShow: false)
+            DispatchQueue.main.async {
+                self.favouriteVC.showLoading(isShow: false)
                 self.concurentQueue.async {
                     DispatchQueue.main.async {
-                        self.homepageVC.tableView.reloadData()
+                        self.favouriteVC.tableView.reloadData()
                     }
                 }
             }
@@ -62,22 +56,9 @@ class HomepagePresenterImpl: HomepagePresenter {
     }
     
     func getPosts() {
-//        _getPost(page: currentPage, apiType: .getInit)
-        
-        apiGroup.enter()
-        postRepository.getPosts(page: currentPage, pageSize: 100) { [weak self] response in
-            guard let self = self else {return}
-            DispatchQueue.global().async {
-                self.homepageVC.getPosts(posts: response.results)
-                self.apiGroup.leave()
-            }
-        } failure: { [weak self] apiError in
-            guard let self = self else {return}
-            self.apiGroup.leave()
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
-        }
+        _getPost(page: currentPage, apiType: .getInit)
     }
-    
+      
     func loadMorePosts() {
         guard loadMoreAvailable else {return}
         loadMoreAvailable = false
@@ -90,53 +71,59 @@ class HomepagePresenterImpl: HomepagePresenter {
         _getPost(page: currentPage, apiType: .refresh)
     }
     
-    private func _getPost(page: Int, pageSize: Int = 20, apiType: APIType) {
+    
+    private func _getPost(page: Int, pageSize: Int = 100, apiType: APIType) {
         switch apiType {
         case .getInit:
-            homepageVC.showLoading(isShow: true)
+            favouriteVC.showLoading(isShow: true)
         default:
             break
         }
-        postRepository.getPosts(page: page, pageSize: pageSize) { [weak self] response in
+        favouriteRepository.getPosts(page: page, pageSize: pageSize) { [weak self] response in
             guard let self = self else {return}
+            
             switch apiType {
             case .getInit:
-                self.homepageVC.showLoading(isShow: false)
-                self.homepageVC.getPosts(posts: response.results)
+                self.favouriteVC.showLoading(isShow: false)
+                self.favouriteVC.getPosts(posts: response.results)
+//                let postIDs = response.results.compactMap({$0.id})
+//                print(postIDs)
+//                self.favouriteVC.getFavouritePostSuccess(postIDs: postIDs)
             case .loadmore:
-                self.homepageVC.loadmorePosts(posts: response.results)
+                self.favouriteVC.loadmorePosts(posts: response.results)
             case .refresh:
-                self.homepageVC.hideRefreshLoading()
-                self.homepageVC.getPosts(posts: response.results)
+                self.favouriteVC.hideRefreshLoading()
+                self.favouriteVC.getPosts(posts: response.results)
             }
             self.loadMoreAvailable = response.loadMoreAvailable
+            
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             print(apiError)
             switch apiType {
             case .getInit:
-                self.homepageVC.showLoading(isShow: false)
-                self.homepageVC.getPosts(posts: [])
+                self.favouriteVC.showLoading(isShow: false)
+                self.favouriteVC.getPosts(posts: [])
             case .refresh:
-                self.homepageVC.hideRefreshLoading()
+                self.favouriteVC.hideRefreshLoading()
             case .loadmore:
-                self.homepageVC.loadmorePosts(posts: [])
+                self.favouriteVC.loadmorePosts(posts: [])
             }
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
-
+    
     private func getFavouritePosts() {
         apiGroup.enter()
         favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.homepageVC.getFavouritePostSuccess(postIDs: postIDs)
+            self.favouriteVC.getFavouritePostSuccess(postIDs: postIDs)
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             self.apiGroup.leave()
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
@@ -145,12 +132,12 @@ class HomepagePresenterImpl: HomepagePresenter {
         pinRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.homepageVC.getPinPostSuccess(postIDs: postIDs)
+            self.favouriteVC.getPinPostSuccess(postIDs: postIDs)
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             self.apiGroup.leave()
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
@@ -159,11 +146,11 @@ class HomepagePresenterImpl: HomepagePresenter {
         favouriteRepository.favourite(postID: postID) { [weak self] response in
             guard let self = self else {return}
             if let post = response.data, let postID = post.postID {
-                self.homepageVC.favouritePost(postID: postID)
+                self.favouriteVC.favouritePost(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
@@ -171,24 +158,23 @@ class HomepagePresenterImpl: HomepagePresenter {
         favouriteRepository.unFavourite(postID: postID) { [weak self] response in
             guard let self = self else {return}
             if let post = response.data, let postID = post.postID {
-                self.homepageVC.unFavouritePostSuccess(postID: postID)
+                self.favouriteVC.unFavouritePostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
-    
     //Call API Pin
     func pin(postID: String) {
         pinRepository.pinPost(postID: postID) { [weak self] response in
             guard let self = self else {return}
             if let post = response.data, let postID = post.postID {
-                self.homepageVC.pinPost(postID: postID)
+                self.favouriteVC.pinPost(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
@@ -196,11 +182,12 @@ class HomepagePresenterImpl: HomepagePresenter {
         pinRepository.unPin(postID: postID) { [weak self] response in
             guard let self = self else {return}
             if let post = response.data, let postID = post.postID {
-                self.homepageVC.unPinPostSuccess(postID: postID)
+                self.favouriteVC.unPinPostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
+    
 }

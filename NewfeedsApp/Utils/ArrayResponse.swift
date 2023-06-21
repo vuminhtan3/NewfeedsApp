@@ -21,3 +21,4 @@ struct ArrayResponse<T: Decodable>: Decodable {
         case pageSize = "pageSize"
     }
 }
+

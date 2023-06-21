@@ -21,19 +21,19 @@ class MainTabBarViewController: ESTabBarController {
         return nav
     }()
     
-    lazy var friendVC: UIViewController = {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "friendVC")
+    lazy var favouriteVC: UIViewController = {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavouriteViewController")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
             title: "",
-            image: UIImage(systemName: "person.2"),
-            selectedImage: UIImage(systemName: "person.2.fill"))
+            image: UIImage(systemName: "heart"),
+            selectedImage: UIImage(systemName: "heart.fill"))
         let nav = AppNavigationController(rootViewController: viewController)
         return nav
     }()
 
     lazy var pinPostVC: UIViewController = {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pinPostVC")
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PinPostViewController")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
             title: "",
@@ -76,6 +76,6 @@ class MainTabBarViewController: ESTabBarController {
     }
     
     private func loadTabBarView() {
-        setViewControllers([homeVC, friendVC, pinPostVC, profileVC], animated: true)
+        setViewControllers([homeVC, favouriteVC, pinPostVC, profileVC], animated: true)
     }
 }

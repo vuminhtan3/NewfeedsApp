@@ -5,6 +5,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MockingbirdFramework (0.20.0)
   - Nimble (12.0.1)
+  - ObjectMapper (4.2.0)
   - Quick (7.0.1)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.2.0)
   - MockingbirdFramework (~> 0.20)
   - Nimble
+  - ObjectMapper
   - Quick
 
 SPEC REPOS:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MockingbirdFramework
     - Nimble
+    - ObjectMapper
     - Quick
 
 SPEC CHECKSUMS:
@@ -33,8 +36,9 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MockingbirdFramework: 54e35fbbb47b806c1a1fae2cf3ef99f6eceb55e5
   Nimble: b279b3ca9e094508778aab5c76417be158d3ad04
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   Quick: 2ba401c7a6428dd2aa191fbff5cb1f89afcd5ca9
 
-PODFILE CHECKSUM: 44d0cd5c1ded573233bfd58cd427f9d66d500488
+PODFILE CHECKSUM: 54fbe67fe66d6cd5ab118054073b7eb0eb8d32de
 
 COCOAPODS: 1.11.3

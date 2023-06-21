@@ -20,21 +20,22 @@ class HomePostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var commentCountLb: UILabel!
     
-    var isPinned: Bool = false
-    var isFavourited: Bool = false
+    var favouriteButtonActionHandle: (() -> Void)?
+    var pinButtonActionHandle: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
+        resetData()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        resetData()
     }
     
     private func resetData() {
-        authorAvatarImgView = nil
+        authorAvatarImgView.image = nil
         authorNameLb.text = nil
         createTimeLb.text = nil
         postTitleLb.text = nil
@@ -43,7 +44,7 @@ class HomePostTableViewCell: UITableViewCell {
         commentCountLb.text = nil
     }
     
-    func binData(post: PostEntity) {
+    func binData(post: PostEntity, isFavourited: Bool, isPinned: Bool) {
         authorNameLb.text = post.author?.username ?? "Unknown"
         postTitleLb.text = post.title
         contentLb.text = post.content
@@ -61,6 +62,17 @@ class HomePostTableViewCell: UITableViewCell {
                 createTimeLb.text = resultDateFormater.string(from: date)
             }
         }
+        if isPinned {
+            pinButton.setBackgroundImage(UIImage(systemName: "pin.fill"), for: .normal)
+        } else {
+            pinButton.setBackgroundImage(UIImage(systemName: "pin"), for: .normal)
+        }
+        
+        if isFavourited {
+            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
     
     func authorAvatar(image: UIImage?) {
@@ -71,24 +83,30 @@ class HomePostTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - PinButtonAction
     @IBAction func pinButtonTapped(_ sender: UIButton) {
-        isPinned = !isPinned
         
-        if isPinned {
-            pinButton.setBackgroundImage(UIImage(systemName: "pin.fill"), for: .normal)
-        } else {
-            pinButton.setBackgroundImage(UIImage(systemName: "pin"), for: .normal)
-        }
+//        isPinned = !isPinned
+        pinButtonActionHandle?()
+        
+//        if isPinned {
+//            pinButton.setBackgroundImage(UIImage(systemName: "pin.fill"), for: .normal)
+//        } else {
+//            pinButton.setBackgroundImage(UIImage(systemName: "pin"), for: .normal)
+//        }
     }
     
+//MARK: - FavouriteButtonAction
     @IBAction func favouriteBtnTapped(_ sender: UIButton) {
-        isFavourited = !isFavourited
         
-        if isFavourited {
-            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-        } else {
-            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-        }
+//        isFavourited = !isFavourited
+        favouriteButtonActionHandle?()
+        
+//        if isFavourited {
+//            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        } else {
+//            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+//        }
     }
     
     @IBAction func commentBtnTapped(_ sender: UIButton) {

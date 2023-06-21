@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct PostEntity: Decodable {
+struct PostEntity: Codable {
     let title, content, address: String?
     let author: Author?
     let createdAt, updatedAt, id: String?
@@ -23,7 +23,7 @@ struct PostEntity: Decodable {
 struct Author: Codable {
     let username, createdAt, updatedAt: String?
     let profile: Profile?
-    let isAdmin: Bool
+    let isAdmin: Bool?
     let id: String?
 
     enum CodingKeys: String, CodingKey {
@@ -48,3 +48,4 @@ struct Profile: Codable {
         case gender, avatar
     }
 }
+

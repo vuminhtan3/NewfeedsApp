@@ -15,6 +15,12 @@ protocol HomepageDisplay {
     func callAPIFailure(errorMsg: String?)
     func showLoading(isShow: Bool)
     func hideRefreshLoading()
+    func getFavouritePostSuccess(postIDs: [String])
+    func favouritePost(postID: String)
+    func unFavouritePostSuccess(postID: String)
+    func getPinPostSuccess(postIDs: [String])
+    func pinPost(postID: String)
+    func unPinPostSuccess(postID: String)
 }
 
 class HomepageViewController: UIViewController {
@@ -26,20 +32,32 @@ class HomepageViewController: UIViewController {
     
     private var cacheImages = [String: UIImage]()
     
+    var favouritePostIDs = [String]()
+    var pinPostIDs = [String]()
+    
+    
     override func viewDidLoad() {
-        let service = PostAPIServiceImpl()
-        let repository = PostRepositoryImpl(postAPIService: service)
-        presenter = HomepagePresenterImpl(postRepository: repository, homepageVC: self)
+        let postService = PostAPIServiceImpl()
+        let postRepository = PostRepositoryImpl(postAPIService: postService)
+        let favouriteService = FavouriteListAPIServiceImpl()
+        let favouriteRepository = FavouriteRepositoryImpl(favouriteAPIService: favouriteService)
+        let pinService = PinAPIServiceImpl()
+        let pinRepository = PinRepositoryImpl(pinAPIService: pinService)
+        
+        presenter = HomepagePresenterImpl(postRepository: postRepository,
+                                          favouriteRepository: favouriteRepository,
+                                          pinRepository: pinRepository,
+                                          homepageVC: self)
         super.viewDidLoad()
 
         setupTableView()
-        presenter.getPosts()
+//        presenter.getPosts()
+        presenter.getInitData()
     }
     
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none // Không muốn hiển thị các gạch ngăn cách giữa các cell
         
@@ -64,7 +82,7 @@ class HomepageViewController: UIViewController {
     }
     private func routeToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
 //        navigationController?.popToRootViewController(animated: true)
         let nav = UINavigationController(rootViewController: loginVC)
         
@@ -85,7 +103,8 @@ class HomepageViewController: UIViewController {
     }
 }
 
-extension HomepageViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - HomepageDataSource
+extension HomepageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts?.count ?? 0
     }
@@ -106,7 +125,26 @@ extension HomepageViewController: UITableViewDataSource, UITableViewDelegate {
             cell.authorAvatar(image: nil)
         }
         
-        cell.binData(post: post)
+        let isFavourited = self.favouritePostIDs.contains(where: {$0 == post.id})
+        let isPinned = self.pinPostIDs.contains(where: {$0 == post.id})
+        cell.favouriteButtonActionHandle = { [weak self] in
+            guard let self = self else { return }
+            if isFavourited {
+                self.presenter.unFavourite(postID: post.id!)
+            } else {
+                self.presenter.favourite(postID: post.id!)
+            }
+        }
+        cell.pinButtonActionHandle = { [weak self] in
+            guard let self = self else {return}
+            if isPinned {
+                self.presenter.unPin(postID: post.id!)
+            } else {
+                self.presenter.pin(postID: post.id!)
+            }
+        }
+        
+        cell.binData(post: post, isFavourited: isFavourited, isPinned: isPinned)
         return cell
     }
     
@@ -120,31 +158,75 @@ extension HomepageViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
+//MARK: - HomepageDelegate
+extension HomepageViewController: UITableViewDelegate {
+    
+}
 
+//MARK: - HomepageDisplay
 extension HomepageViewController: HomepageDisplay {
-    func getPosts(posts: [PostEntity]) {
-        if posts.isEmpty {
-            let messageLb = UILabel(frame: CGRect(x: tableView.frame.midX,
-                                                  y: tableView.frame.midY,
-                                                  width: tableView.frame.size.width,
-                                                  height: tableView.frame.size.height))
-            messageLb.text = "No Data"
-            messageLb.textColor = .black
-            messageLb.numberOfLines = 0
-            messageLb.textAlignment = .center
-            messageLb.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-            messageLb.sizeToFit()
-            tableView.backgroundView = messageLb
-        } else {
-            tableView.backgroundView = nil
+    func getFavouritePostSuccess(postIDs: [String]) {
+        self.favouritePostIDs = postIDs
+        self.tableView.reloadData()
+    }
+    
+    func getPinPostSuccess(postIDs: [String]) {
+        self.pinPostIDs = postIDs
+        self.tableView.reloadData()
+    }
+    
+    func favouritePost(postID: String) {
+        self.favouritePostIDs.append(postID)
+        self.reloadRow(where: postID)
+    }
+    
+    func unFavouritePostSuccess(postID: String) {
+        self.favouritePostIDs.removeAll { id in
+            return id == postID
         }
-        self.posts = posts
-        tableView.reloadData()
+        self.reloadRow(where: postID)
+    }
+    
+    func pinPost(postID: String) {
+        self.pinPostIDs.append(postID)
+        self.reloadRow(where: postID)
+    }
+    
+    func unPinPostSuccess(postID: String) {
+        self.pinPostIDs.removeAll { id in
+            return id == postID
+        }
+        self.reloadRow(where: postID)
+    }
+    
+    func getPosts(posts: [PostEntity]) {
+        DispatchQueue.main.async {
+            if posts.isEmpty {
+                let messageLb = UILabel(frame: CGRect(x: self.tableView.frame.midX,
+                                                      y: self.tableView.frame.midY,
+                                                      width: self.tableView.frame.size.width,
+                                                      height: self.tableView.frame.size.height))
+                messageLb.text = "No Data"
+                messageLb.textColor = .black
+                messageLb.numberOfLines = 0
+                messageLb.textAlignment = .center
+                messageLb.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+                messageLb.sizeToFit()
+                self.tableView.backgroundView = messageLb
+            } else {
+                self.tableView.backgroundView = nil
+            }
+            self.posts = posts
+            self.tableView.reloadData()
+        }
     }
     
     func loadmorePosts(posts: [PostEntity]) {
         self.posts?.append(contentsOf: posts)
-        tableView.reloadData()
+        
+        print("Load more post \(posts.count)")
+        
+        self.tableView.reloadData()
     }
     
     func callAPIFailure(errorMsg: String?) {
@@ -162,6 +244,12 @@ extension HomepageViewController: HomepageDisplay {
             MBProgressHUD.showAdded(to: self.view, animated: true)
         } else {
             MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
+    func reloadRow(where postID: String) {
+        if let index = self.posts?.firstIndex(where: {$0.id == postID}) {
+            self.tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
         }
     }
 }

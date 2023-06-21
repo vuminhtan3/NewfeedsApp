@@ -49,7 +49,7 @@ enum AuthRouter: URLRequestConvertible {
         case .logout:
             request = try URLEncoding.default.encode(request, with: nil)
         }
-        request.timeoutInterval = 39
+        request.timeoutInterval = 30
         
         return request
     }
