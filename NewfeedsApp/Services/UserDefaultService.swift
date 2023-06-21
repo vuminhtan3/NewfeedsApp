@@ -8,11 +8,11 @@
 import Foundation
 
 
-class UserDefaultsSingleton {
+class UserDefaultsService {
     /**
      Declare an instance of class
      */
-    static var shared = UserDefaultsSingleton()
+    static var shared = UserDefaultsService()
     
     /**
      Dat ten bien

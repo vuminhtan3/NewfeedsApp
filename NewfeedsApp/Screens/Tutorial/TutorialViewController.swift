@@ -58,8 +58,12 @@ class TutorialViewController: UIViewController {
     //Hàm chuyển màn sang register và login
     private func routeToAuthNavigation() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "loginVC")
-        navigationController?.pushViewController(loginVC, animated: true)
+        let loginVC = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
+//        navigationController?.pushViewController(loginVC, animated: true)
+        let nav = UINavigationController(rootViewController: loginVC)
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
+        window.rootViewController = nav
+        window.makeKeyAndVisible()
     }
 }
 
@@ -81,7 +85,7 @@ extension TutorialViewController: UICollectionViewDataSource {
             guard let self = self else {return}
             
             if indexPath.row + 1 == self.dataSource.count {
-                UserDefaultsSingleton.shared.completedTutorial = true
+                UserDefaultsService.shared.completedTutorial = true
                 
                 self.routeToAuthNavigation()
 //                print("index: \(indexPath.row), currentPage: \(self.currentPage)")

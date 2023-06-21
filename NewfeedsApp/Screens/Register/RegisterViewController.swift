@@ -107,7 +107,7 @@ extension RegisterViewController: RegisterDisplay {
     private func routeToMain() {
         //Chuyển tới màn hình chính
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarVC = mainStoryboard.instantiateViewController(withIdentifier: "mainTabBarVC")
+        let mainTabBarVC = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarViewController")
         navigationController?.pushViewController(mainTabBarVC, animated: true)
 //        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else {return}
 //
