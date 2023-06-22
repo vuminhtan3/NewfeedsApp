@@ -55,6 +55,11 @@ class HomepageViewController: UIViewController {
         presenter.getInitData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.getInitData()
+    }
+    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -223,8 +228,6 @@ extension HomepageViewController: HomepageDisplay {
     
     func loadmorePosts(posts: [PostEntity]) {
         self.posts?.append(contentsOf: posts)
-        
-        print("Load more post \(posts.count)")
         
         self.tableView.reloadData()
     }

@@ -45,8 +45,13 @@ class FavouriteViewController: UIViewController {
                                            pinRepository: pinRepository)
         super.viewDidLoad()
         setupTableView()
-        presenter.getPosts()
+        presenter.getInitData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.getInitData()
     }
     
     private func setupTableView() {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct PostEntity: Codable {
+struct PostEntity: Decodable {
     let title, content, address: String?
     let author: Author?
     let createdAt, updatedAt, id: String?
@@ -20,7 +20,7 @@ struct PostEntity: Codable {
 }
 
 // MARK: - Author
-struct Author: Codable {
+struct Author: Decodable {
     let username, createdAt, updatedAt: String?
     let profile: Profile?
     let isAdmin: Bool?
@@ -37,7 +37,7 @@ struct Author: Codable {
 }
 
 // MARK: - Profile
-struct Profile: Codable {
+struct Profile: Decodable {
     let bio, createdAt, updatedAt, gender: String?
     let avatar: String?
 
