@@ -8,6 +8,7 @@
 import Foundation
 
 protocol PinPostPresenter {
+    func getInitData()
     func getPosts()
     func loadMorePosts()
     func refreshPosts()
@@ -31,6 +32,27 @@ class PinPostPresenterImpl: PinPostPresenter {
     
     var currentPage = 1
     var loadMoreAvailable = false
+    private var apiGroup = DispatchGroup()
+    let concurentQueue = DispatchQueue(label: "techmaster.queue.concurrent", attributes: .concurrent)
+    
+    func getInitData() {
+        pinPostVC.showLoading(isShow: true)
+        
+        getPosts()
+        getFavouritePosts()
+        getPinPosts()
+        
+        apiGroup.notify(queue: .main) {
+            DispatchQueue.main.async {
+                self.pinPostVC.showLoading(isShow: false)
+                self.concurentQueue.async {
+                    DispatchQueue.main.async {
+                        self.pinPostVC.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
     
     func getPosts() {
         _getPost(page: currentPage, apiType: .getInit)
@@ -46,6 +68,8 @@ class PinPostPresenterImpl: PinPostPresenter {
     func refreshPosts() {
         currentPage = 1
         _getPost(page: currentPage, apiType: .refresh)
+        getFavouritePosts()
+        
     }
     
     private func _getPost(page: Int, pageSize: Int = 100, apiType: APIType) {
@@ -62,8 +86,6 @@ class PinPostPresenterImpl: PinPostPresenter {
             case .getInit:
                 self.pinPostVC.showLoading(isShow: false)
                 self.pinPostVC.getPosts(posts: response.results)
-//                let postIDs = response.results.compactMap({$0.id})
-//                self.pinPostVC.getPinPostSuccess(postIDs: postIDs)
             case .loadmore:
                 self.pinPostVC.loadmorePosts(posts: response.results)
             case .refresh:
@@ -74,7 +96,6 @@ class PinPostPresenterImpl: PinPostPresenter {
             
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            print(apiError)
             switch apiType {
             case .getInit:
                 self.pinPostVC.showLoading(isShow: false)
@@ -84,6 +105,34 @@ class PinPostPresenterImpl: PinPostPresenter {
             case .loadmore:
                 self.pinPostVC.loadmorePosts(posts: [])
             }
+            self.pinPostVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+        }
+    }
+    
+    private func getFavouritePosts() {
+        apiGroup.enter()
+        favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
+            guard let self = self else {return}
+            let postIDs = response.results.compactMap({$0.id})
+            self.pinPostVC.getFavouritePostSuccess(postIDs: postIDs)
+            self.apiGroup.leave()
+        } failure: { [weak self] apiError in
+            guard let self = self else {return}
+            self.apiGroup.leave()
+            self.pinPostVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+        }
+    }
+    
+    private func getPinPosts() {
+        apiGroup.enter()
+        pinRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
+            guard let self = self else {return}
+            let postIDs = response.results.compactMap({$0.id})
+            self.pinPostVC.getPinPostSuccess(postIDs: postIDs)
+            self.apiGroup.leave()
+        } failure: { [weak self] apiError in
+            guard let self = self else {return}
+            self.apiGroup.leave()
             self.pinPostVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }

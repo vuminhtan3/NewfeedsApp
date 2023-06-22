@@ -50,7 +50,7 @@ class HomepagePresenterImpl: HomepagePresenter {
         getPinPosts()
         
         apiGroup.notify(queue: .main) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.async {
                 self.homepageVC.showLoading(isShow: false)
                 self.concurentQueue.async {
                     DispatchQueue.main.async {
@@ -62,20 +62,20 @@ class HomepagePresenterImpl: HomepagePresenter {
     }
     
     func getPosts() {
-//        _getPost(page: currentPage, apiType: .getInit)
+        _getPost(page: currentPage, apiType: .getInit)
         
-        apiGroup.enter()
-        postRepository.getPosts(page: currentPage, pageSize: 100) { [weak self] response in
-            guard let self = self else {return}
-            DispatchQueue.global().async {
-                self.homepageVC.getPosts(posts: response.results)
-                self.apiGroup.leave()
-            }
-        } failure: { [weak self] apiError in
-            guard let self = self else {return}
-            self.apiGroup.leave()
-            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
-        }
+//        apiGroup.enter()
+//        postRepository.getPosts(page: currentPage, pageSize: 100) { [weak self] response in
+//            guard let self = self else {return}
+//            DispatchQueue.global().async {
+//                self.homepageVC.getPosts(posts: response.results)
+//                self.apiGroup.leave()
+//            }
+//        } failure: { [weak self] apiError in
+//            guard let self = self else {return}
+//            self.apiGroup.leave()
+//            self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+//        }
     }
     
     func loadMorePosts() {
@@ -88,12 +88,15 @@ class HomepagePresenterImpl: HomepagePresenter {
     func refreshPosts() {
         currentPage = 1
         _getPost(page: currentPage, apiType: .refresh)
+        getFavouritePosts()
+        getPinPosts()
     }
     
     private func _getPost(page: Int, pageSize: Int = 20, apiType: APIType) {
         switch apiType {
         case .getInit:
-            homepageVC.showLoading(isShow: true)
+//            homepageVC.showLoading(isShow: true)
+            apiGroup.enter()
         default:
             break
         }
@@ -101,8 +104,9 @@ class HomepagePresenterImpl: HomepagePresenter {
             guard let self = self else {return}
             switch apiType {
             case .getInit:
-                self.homepageVC.showLoading(isShow: false)
+//                self.homepageVC.showLoading(isShow: false)
                 self.homepageVC.getPosts(posts: response.results)
+                self.apiGroup.leave()
             case .loadmore:
                 self.homepageVC.loadmorePosts(posts: response.results)
             case .refresh:
@@ -115,14 +119,16 @@ class HomepagePresenterImpl: HomepagePresenter {
             print(apiError)
             switch apiType {
             case .getInit:
-                self.homepageVC.showLoading(isShow: false)
+//                self.homepageVC.showLoading(isShow: false)
                 self.homepageVC.getPosts(posts: [])
+                self.apiGroup.leave()
             case .refresh:
                 self.homepageVC.hideRefreshLoading()
             case .loadmore:
                 self.homepageVC.loadmorePosts(posts: [])
             }
             self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+           
         }
     }
 
@@ -149,8 +155,8 @@ class HomepagePresenterImpl: HomepagePresenter {
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.apiGroup.leave()
             self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.apiGroup.leave()
         }
     }
     

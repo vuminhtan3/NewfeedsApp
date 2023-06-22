@@ -45,8 +45,13 @@ class PinPostViewController: UIViewController {
         
         super.viewDidLoad()
         setupTableView()
-        presenter.getPosts()
+        presenter.getInitData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.getInitData()
     }
     
     private func setupTableView() {
@@ -144,6 +149,11 @@ extension PinPostViewController: UITableViewDelegate {
 
 //MARK: - PinPostDisplay
 extension PinPostViewController: PinPostDisplay {
+    
+    func getFavouritePostSuccess(postIDs: [String]) {
+        self.favouritePostIDs = postIDs
+        self.tableView.reloadData()
+    }
     
     func getPinPostSuccess(postIDs: [String]) {
         self.pinPostIDs = postIDs

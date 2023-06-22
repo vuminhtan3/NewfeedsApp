@@ -39,7 +39,7 @@ class FavouritePresenterImpl: FavouritePresenter {
     func getInitData() {
         favouriteVC.showLoading(isShow: true)
         
-//        getPosts()
+        getPosts()
         getFavouritePosts()
         getPinPosts()
         
@@ -69,6 +69,7 @@ class FavouritePresenterImpl: FavouritePresenter {
     func refreshPosts() {
         currentPage = 1
         _getPost(page: currentPage, apiType: .refresh)
+        getPinPosts()
     }
     
     
@@ -86,9 +87,6 @@ class FavouritePresenterImpl: FavouritePresenter {
             case .getInit:
                 self.favouriteVC.showLoading(isShow: false)
                 self.favouriteVC.getPosts(posts: response.results)
-//                let postIDs = response.results.compactMap({$0.id})
-//                print(postIDs)
-//                self.favouriteVC.getFavouritePostSuccess(postIDs: postIDs)
             case .loadmore:
                 self.favouriteVC.loadmorePosts(posts: response.results)
             case .refresh:
@@ -99,7 +97,6 @@ class FavouritePresenterImpl: FavouritePresenter {
             
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            print(apiError)
             switch apiType {
             case .getInit:
                 self.favouriteVC.showLoading(isShow: false)
@@ -114,15 +111,14 @@ class FavouritePresenterImpl: FavouritePresenter {
     }
     
     private func getFavouritePosts() {
-        apiGroup.enter()
+//        apiGroup.enter()
         favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
             self.favouriteVC.getFavouritePostSuccess(postIDs: postIDs)
-            self.apiGroup.leave()
+//            self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.apiGroup.leave()
             self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
