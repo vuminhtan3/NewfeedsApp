@@ -34,6 +34,19 @@ class AuthService {
         }
     }
     
+    var refreshToken: String {
+        get {
+            return keychain.get(Keys.kRefreshToken.rawValue) ?? ""
+        }
+        set {
+            if newValue.isEmpty {
+                keychain.delete(Keys.kRefreshToken.rawValue)
+            } else {
+                keychain.set(newValue, forKey: Keys.kRefreshToken.rawValue)
+            }
+        }
+    }
+    
     /**
      Check login state
      */

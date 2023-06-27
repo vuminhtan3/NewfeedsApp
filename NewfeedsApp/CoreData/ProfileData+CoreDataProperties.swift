@@ -2,7 +2,7 @@
 //  ProfileData+CoreDataProperties.swift
 //  NewfeedsApp
 //
-//  Created by Minh Tan Vu on 21/06/2023.
+//  Created by Minh Tan Vu on 23/06/2023.
 //
 //
 
@@ -16,12 +16,6 @@ extension ProfileData {
         return NSFetchRequest<ProfileData>(entityName: "ProfileData")
     }
 
-    @NSManaged public var bio: String?
-    @NSManaged public var createdAt: String?
-    @NSManaged public var updatedAt: String?
-    @NSManaged public var gender: String?
-    @NSManaged public var avatar: String?
-    @NSManaged public var owner: AuthorData?
 
 }
 

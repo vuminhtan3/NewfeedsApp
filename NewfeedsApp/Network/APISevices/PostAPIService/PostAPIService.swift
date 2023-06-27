@@ -22,17 +22,18 @@ class PostAPIServiceImpl: PostAPIService {
                   failure: ((APIError?) -> Void)?) {
         let router = PostRouter.getPosts(page: page, pageSize: pageSize)
         
-        AF.request(router).cURLDescription { description in
-            print(description)
-        }
-        .validate(statusCode: 200..<300)
-        .responseDecodable(of: ArrayResponse<PostEntity>.self) { response in
-            switch response.result {
-            case .success(let entity):
-                success?(entity)
-            case .failure(let afError):
-                failure?(APIError.from(afError: afError))
-            }
-        }
+        NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
+//        AF.request(router).cURLDescription { description in
+//            print(description)
+//        }
+//        .validate(statusCode: 200..<300)
+//        .responseDecodable(of: ArrayResponse<PostEntity>.self) { response in
+//            switch response.result {
+//            case .success(let entity):
+//                success?(entity)
+//            case .failure(let afError):
+//                failure?(APIError.from(afError: afError))
+//            }
+//        }
     }
 }

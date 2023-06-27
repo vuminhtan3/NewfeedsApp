@@ -14,13 +14,13 @@ class HomePostTableViewCell: UITableViewCell {
     @IBOutlet weak var authorNameLb: UILabel!
     @IBOutlet weak var createTimeLb: UILabel!
     @IBOutlet weak var postTitleLb: UILabel!
-    @IBOutlet weak var favouriteBtn: UIButton!
+    @IBOutlet weak var favoriteBtn: UIButton!
     @IBOutlet weak var contentLb: UILabel!
-    @IBOutlet weak var favouriteCountLb: UILabel!
+    @IBOutlet weak var favoriteCountLb: UILabel!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var commentCountLb: UILabel!
     
-    var favouriteButtonActionHandle: (() -> Void)?
+    var favoriteButtonActionHandle: (() -> Void)?
     var pinButtonActionHandle: (() -> Void)?
     
     override func awakeFromNib() {
@@ -40,15 +40,15 @@ class HomePostTableViewCell: UITableViewCell {
         createTimeLb.text = nil
         postTitleLb.text = nil
         contentLb.text = nil
-        favouriteCountLb.text = nil
+        favoriteCountLb.text = nil
         commentCountLb.text = nil
     }
     
-    func binData(post: PostEntity, isFavourited: Bool, isPinned: Bool) {
+    func binData(post: PostEntity, isFavorited: Bool, isPinned: Bool) {
         authorNameLb.text = post.author?.username ?? "Unknown"
         postTitleLb.text = post.title
         contentLb.text = post.content
-        favouriteCountLb.text = "999"
+        favoriteCountLb.text = "999"
         commentCountLb.text = "999 comments"
         
         if let createTime = post.createdAt {
@@ -68,10 +68,10 @@ class HomePostTableViewCell: UITableViewCell {
             pinButton.setBackgroundImage(UIImage(systemName: "pin"), for: .normal)
         }
         
-        if isFavourited {
-            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        if isFavorited {
+            favoriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+            favoriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
     
@@ -96,16 +96,16 @@ class HomePostTableViewCell: UITableViewCell {
 //        }
     }
     
-//MARK: - FavouriteButtonAction
-    @IBAction func favouriteBtnTapped(_ sender: UIButton) {
+//MARK: - favoriteButtonAction
+    @IBAction func favoriteBtnTapped(_ sender: UIButton) {
         
-//        isFavourited = !isFavourited
-        favouriteButtonActionHandle?()
+//        isfavorited = !isfavorited
+        favoriteButtonActionHandle?()
         
-//        if isFavourited {
-//            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        if isfavorited {
+//            favoriteBtn.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
 //        } else {
-//            favouriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+//            favoriteBtn.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
 //        }
     }
     

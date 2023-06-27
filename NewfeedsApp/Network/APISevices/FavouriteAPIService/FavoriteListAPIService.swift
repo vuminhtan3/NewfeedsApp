@@ -1,33 +1,35 @@
 //
-//  PinAPIService.swift
+//  FavoriteListAPIService.swift
 //  NewfeedsApp
 //
-//  Created by Minh Tan Vu on 18/06/2023.
+//  Created by Minh Tan Vu on 19/06/2023.
 //
 
 import Foundation
 import Alamofire
 
-protocol PinAPIService {
+protocol FavoriteListAPIService {
     func getPosts(page: Int,
                   pageSize: Int,
                   success: ((ArrayResponse<PostEntity>) -> Void)?,
                   failure: ((APIError?) -> Void)?)
-    func pinPost(postID: String,
-                success: ((ObjectResponse<PinEntity>) -> Void)?,
+    func favorite(postID: String,
+                success: ((ObjectResponse<FavoriteEntity>) -> Void)?,
                 failure: ((APIError?) -> Void)?)
-    func unPin(postID: String,
-               success: ((ObjectResponse<PinEntity>) -> Void)?,
+    func unFavorite(postID: String,
+               success: ((ObjectResponse<FavoriteEntity>) -> Void)?,
                failure: ((APIError?) -> Void)?)
 }
 
-class PinAPIServiceImpl: PinAPIService {
+class FavoriteListAPIServiceImpl: FavoriteListAPIService {
+    
     func getPosts(page: Int,
                   pageSize: Int,
                   success: ((ArrayResponse<PostEntity>) -> Void)?,
                   failure: ((APIError?) -> Void)?) {
-        let router = PinRouter.getPosts(page: page, pageSize: pageSize)
+        let router = FavoriteRouter.getPosts(page: page, pageSize: pageSize)
         NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
+        
 //        AF.request(router).cURLDescription { description in
 //            print(description)
 //        }
@@ -42,15 +44,15 @@ class PinAPIServiceImpl: PinAPIService {
 //        }
     }
     
-    func pinPost(postID: String, success: ((ObjectResponse<PinEntity>) -> Void)?, failure: ((APIError?) -> Void)?) {
-        let router = PinRouter.pin(postID: postID)
+    func favorite(postID: String, success: ((ObjectResponse<FavoriteEntity>) -> Void)?, failure: ((APIError?) -> Void)?) {
+        let router = FavoriteRouter.favorite(postID: postID)
         
         NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
 //        AF.request(router).cURLDescription { description in
 //            print(description)
 //        }
 //        .validate(statusCode: 200..<300)
-//        .responseDecodable(of: ObjectResponse<PinEntity>.self) { response in
+//        .responseDecodable(of: ObjectResponse<FavoriteEntity>.self) { response in
 //            switch response.result {
 //            case .success(let entity):
 //                success?(entity)
@@ -60,15 +62,15 @@ class PinAPIServiceImpl: PinAPIService {
 //        }
     }
     
-    func unPin(postID: String, success: ((ObjectResponse<PinEntity>) -> Void)?, failure: ((APIError?) -> Void)?) {
-        let router = PinRouter.unPin(postID: postID)
+    func unFavorite(postID: String, success: ((ObjectResponse<FavoriteEntity>) -> Void)?, failure: ((APIError?) -> Void)?) {
+        let router = FavoriteRouter.unFavorite(postID: postID)
         
         NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
 //        AF.request(router).cURLDescription { description in
 //            print(description)
 //        }
 //        .validate(statusCode: 200..<300)
-//        .responseDecodable(of: ObjectResponse<PinEntity>.self) { response in
+//        .responseDecodable(of: ObjectResponse<FavoriteEntity>.self) { response in
 //            switch response.result {
 //            case .success(let entity):
 //                success?(entity)

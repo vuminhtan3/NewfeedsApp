@@ -15,12 +15,12 @@ protocol HomepageDisplay {
     func callAPIFailure(errorMsg: String?)
     func showLoading(isShow: Bool)
     func hideRefreshLoading()
-    func getFavouritePostSuccess(postIDs: [String])
-    func favouritePost(postID: String)
-    func unFavouritePostSuccess(postID: String)
-    func getPinPostSuccess(postIDs: [String])
-    func pinPost(postID: String)
-    func unPinPostSuccess(postID: String)
+//    func getfavoritePostSuccess(postIDs: [String])
+//    func favoritePost(postID: String)
+//    func unfavoritePostSuccess(postID: String)
+//    func getPinPostSuccess(postIDs: [String])
+//    func pinPost(postID: String)
+//    func unPinPostSuccess(postID: String)
 }
 
 class HomepageViewController: UIViewController {
@@ -32,20 +32,21 @@ class HomepageViewController: UIViewController {
     
     private var cacheImages = [String: UIImage]()
     
-    var favouritePostIDs = [String]()
+    var favoritePostIDs = [String]()
     var pinPostIDs = [String]()
     
     
     override func viewDidLoad() {
         let postService = PostAPIServiceImpl()
-        let postRepository = PostRepositoryImpl(postAPIService: postService)
-        let favouriteService = FavouriteListAPIServiceImpl()
-        let favouriteRepository = FavouriteRepositoryImpl(favouriteAPIService: favouriteService)
+        let postCoreDataService = PostCoreDataServiceImpl()
+        let postRepository = PostRepositoryImpl(postAPIService: postService, postCoreDataService: postCoreDataService)
+        let favoriteService = FavoriteListAPIServiceImpl()
+        let favoriteRepository = FavoriteRepositoryImpl(favoriteAPIService: favoriteService)
         let pinService = PinAPIServiceImpl()
         let pinRepository = PinRepositoryImpl(pinAPIService: pinService)
         
         presenter = HomepagePresenterImpl(postRepository: postRepository,
-                                          favouriteRepository: favouriteRepository,
+                                          favoriteRepository: favoriteRepository,
                                           pinRepository: pinRepository,
                                           homepageVC: self)
         super.viewDidLoad()
@@ -130,14 +131,14 @@ extension HomepageViewController: UITableViewDataSource {
             cell.authorAvatar(image: nil)
         }
         
-        let isFavourited = self.favouritePostIDs.contains(where: {$0 == post.id})
+        let isfavorited = self.favoritePostIDs.contains(where: {$0 == post.id})
         let isPinned = self.pinPostIDs.contains(where: {$0 == post.id})
-        cell.favouriteButtonActionHandle = { [weak self] in
+        cell.favoriteButtonActionHandle = { [weak self] in
             guard let self = self else { return }
-            if isFavourited {
-                self.presenter.unFavourite(postID: post.id!)
+            if isfavorited {
+                self.presenter.unfavorite(postID: post.id!)
             } else {
-                self.presenter.favourite(postID: post.id!)
+                self.presenter.favorite(postID: post.id!)
             }
         }
         cell.pinButtonActionHandle = { [weak self] in
@@ -149,7 +150,7 @@ extension HomepageViewController: UITableViewDataSource {
             }
         }
         
-        cell.binData(post: post, isFavourited: isFavourited, isPinned: isPinned)
+        cell.binData(post: post, isFavorited: isfavorited, isPinned: isPinned)
         return cell
     }
     
@@ -170,8 +171,8 @@ extension HomepageViewController: UITableViewDelegate {
 
 //MARK: - HomepageDisplay
 extension HomepageViewController: HomepageDisplay {
-    func getFavouritePostSuccess(postIDs: [String]) {
-        self.favouritePostIDs = postIDs
+    func getfavoritePostSuccess(postIDs: [String]) {
+        self.favoritePostIDs = postIDs
         self.tableView.reloadData()
     }
     
@@ -180,13 +181,13 @@ extension HomepageViewController: HomepageDisplay {
         self.tableView.reloadData()
     }
     
-    func favouritePost(postID: String) {
-        self.favouritePostIDs.append(postID)
+    func favoritePost(postID: String) {
+        self.favoritePostIDs.append(postID)
         self.reloadRow(where: postID)
     }
     
-    func unFavouritePostSuccess(postID: String) {
-        self.favouritePostIDs.removeAll { id in
+    func unfavoritePostSuccess(postID: String) {
+        self.favoritePostIDs.removeAll { id in
             return id == postID
         }
         self.reloadRow(where: postID)

@@ -28,25 +28,28 @@ class AuthAPIServiceImpl: AuthAPIService {
      Register
      */
     func register(username: String, nickname: String, password: String, confirmPassword: String, success: ((RegisterEntity) -> Void)?, failure: ((APIError?) -> Void)?) {
-        AF.request("https://learn-api-3t7z.onrender.com/register",
-                   method: .post,
-                   parameters: [
-                    "username" : username,
-                    "nick_name": nickname,
-                    "password": password,
-                    "password_confirmatioon": confirmPassword
-                   ], encoder: JSONParameterEncoder.default)
-        .validate(statusCode: 200..<300)
-        .responseDecodable(of: RegisterEntity.self) { response in
-            switch response.result {
-            case .success(let entity):
-                //Case API success:
-                success?(entity)
-            case .failure(let error):
-                //Call API failure
-                failure?(APIError.from(afError: error))// haven't handled the error yet
-            }
-        }
+        
+        let router = AuthRouter.register(username: username, name: nickname, password: password)
+        NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
+//        AF.request("https://learn-api-3t7z.onrender.com/register",
+//                   method: .post,
+//                   parameters: [
+//                    "username" : username,
+//                    "nick_name": nickname,
+//                    "password": password,
+//                    "password_confirmatioon": confirmPassword
+//                   ], encoder: JSONParameterEncoder.default)
+//        .validate(statusCode: 200..<300)
+//        .responseDecodable(of: RegisterEntity.self) { response in
+//            switch response.result {
+//            case .success(let entity):
+//                //Case API success:
+//                success?(entity)
+//            case .failure(let error):
+//                //Call API failure
+//                failure?(APIError.from(afError: error))// haven't handled the error yet
+//            }
+//        }
     }
     
     /**
@@ -58,22 +61,25 @@ class AuthAPIServiceImpl: AuthAPIService {
                failure: ((APIError?) -> Void)?) {
         
         // Send request call API onto sever
-        AF.request("https://learn-api-3t7z.onrender.com/login",
-                   method: .post,
-                   parameters: [
-                    "username" : username,
-                    "password": password
-                   ], encoder: JSONParameterEncoder.default)
-        .validate(statusCode: 200..<300)
-        .responseDecodable(of: LoginEntity.self) { response in
-            switch response.result {
-            case .success(let entity):
-                //Case API success:
-                success?(entity)
-            case .failure(let error):
-                //Call API failure
-                failure?(APIError.from(afError: error))// haven't handled the error yet
-            }
-        }
+        
+        let router = AuthRouter.login(username: username, password: password)
+        NetworkManager.shared.callAPI(router: router, success: success, failure: failure)
+       
+//        AF.request("https://learn-api-3t7z.onrender.com/login",
+//                   method: .post,
+//                   parameters: [
+//                    "username" : username,
+//                    "password": password
+//                   ], encoder: JSONParameterEncoder.default)
+//        .validate(statusCode: 200..<300)
+//        .responseDecodable(of: LoginEntity.self) { response in
+//            switch response.result {
+//            case .success(let entity):
+//                //Case API success:
+//                success?(entity)
+//            case .failure(let error):
+//                //Call API failure
+//                failure?(APIError.from(afError: error))// haven't handled the error yet
+//            }
     }
 }

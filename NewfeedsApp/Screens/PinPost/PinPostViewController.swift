@@ -30,18 +30,18 @@ class PinPostViewController: UIViewController {
     
     private var cacheImages = [String: UIImage]()
     
-    private var favouritePostIDs = [String]()
+    private var favoritePostIDs = [String]()
     private var pinPostIDs = [String]()
     
     override func viewDidLoad() {
-        let favouriteService = FavouriteListAPIServiceImpl()
-        let favouriteRepository = FavouriteRepositoryImpl(favouriteAPIService: favouriteService)
+        let favoriteService = FavoriteListAPIServiceImpl()
+        let favoriteRepository = FavoriteRepositoryImpl(favoriteAPIService: favoriteService)
         let pinService = PinAPIServiceImpl()
         let pinRepository = PinRepositoryImpl(pinAPIService: pinService)
         
         presenter = PinPostPresenterImpl(pinRepository: pinRepository,
                                          pinPostVC: self,
-                                         favouriteRepository: favouriteRepository)
+                                         favoriteRepository: favoriteRepository)
         
         super.viewDidLoad()
         setupTableView()
@@ -107,14 +107,14 @@ extension PinPostViewController: UITableViewDataSource {
             cell.authorAvatar(image: nil)
         }
         
-        let isFavourited = self.favouritePostIDs.contains(where: {$0 == post.id})
+        let isFavorited = self.favoritePostIDs.contains(where: {$0 == post.id})
         let isPinned = self.pinPostIDs.contains(where: {$0 == post.id})
-        cell.favouriteButtonActionHandle = { [weak self] in
+        cell.favoriteButtonActionHandle = { [weak self] in
             guard let self = self else { return }
-            if isFavourited {
-                self.presenter.unFavourite(postID: post.id!)
+            if isFavorited {
+                self.presenter.unFavorite(postID: post.id!)
             } else {
-                self.presenter.favourite(postID: post.id!)
+                self.presenter.favorite(postID: post.id!)
             }
         }
         cell.pinButtonActionHandle = { [weak self] in
@@ -126,7 +126,7 @@ extension PinPostViewController: UITableViewDataSource {
             }
         }
         
-        cell.binData(post: post, isFavourited: isFavourited, isPinned: isPinned)
+        cell.binData(post: post, isFavorited: isFavorited, isPinned: isPinned)
         return cell
     }
     
@@ -150,8 +150,8 @@ extension PinPostViewController: UITableViewDelegate {
 //MARK: - PinPostDisplay
 extension PinPostViewController: PinPostDisplay {
     
-    func getFavouritePostSuccess(postIDs: [String]) {
-        self.favouritePostIDs = postIDs
+    func getFavoritePostSuccess(postIDs: [String]) {
+        self.favoritePostIDs = postIDs
         self.tableView.reloadData()
     }
     
@@ -160,13 +160,13 @@ extension PinPostViewController: PinPostDisplay {
         self.tableView.reloadData()
     }
     
-    func favouritePost(postID: String) {
-        self.favouritePostIDs.append(postID)
+    func favoritePost(postID: String) {
+        self.favoritePostIDs.append(postID)
         self.reloadRow(where: postID)
     }
     
-    func unFavouritePostSuccess(postID: String) {
-        self.favouritePostIDs.removeAll { id in
+    func unFavoritePostSuccess(postID: String) {
+        self.favoritePostIDs.removeAll { id in
             return id == postID
         }
         self.reloadRow(where: postID)

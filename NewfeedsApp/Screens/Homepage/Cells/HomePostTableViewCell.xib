@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -91,7 +90,7 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" backgroundImage="heart" catalog="system"/>
                                                 <connections>
-                                                    <action selector="favouriteBtnTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vrd-xB-2ZM"/>
+                                                    <action selector="favoriteBtnTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vrd-xB-2ZM"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGd-GP-ppR">
@@ -215,8 +214,8 @@
                 <outlet property="commentCountLb" destination="14V-JF-fri" id="MbC-kT-YTZ"/>
                 <outlet property="contentLb" destination="2A4-Z5-q52" id="Ach-RY-cyM"/>
                 <outlet property="createTimeLb" destination="W0R-8i-9n9" id="hDm-uU-02A"/>
-                <outlet property="favouriteBtn" destination="hav-la-w9x" id="hzC-lw-TMf"/>
-                <outlet property="favouriteCountLb" destination="RGd-GP-ppR" id="RgE-OG-ZQe"/>
+                <outlet property="favoriteBtn" destination="hav-la-w9x" id="hzC-lw-TMf"/>
+                <outlet property="favoriteCountLb" destination="RGd-GP-ppR" id="RgE-OG-ZQe"/>
                 <outlet property="pinButton" destination="sQz-GX-pYg" id="QYc-11-I7p"/>
                 <outlet property="postTitleLb" destination="RHB-Zv-L8h" id="z3Y-cw-Tfp"/>
             </connections>

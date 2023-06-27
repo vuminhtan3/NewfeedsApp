@@ -21,8 +21,8 @@ class MainTabBarViewController: ESTabBarController {
         return nav
     }()
     
-    lazy var favouriteVC: UIViewController = {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FavouriteViewController")
+    lazy var favoriteVC: UIViewController = {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "favoriteViewController")
         viewController.tabBarItem = ESTabBarItem(
             CustomStyleTabBarContentView(),
             title: "",
@@ -76,6 +76,6 @@ class MainTabBarViewController: ESTabBarController {
     }
     
     private func loadTabBarView() {
-        setViewControllers([homeVC, favouriteVC, pinPostVC, profileVC], animated: true)
+        setViewControllers([homeVC, favoriteVC, pinPostVC, profileVC], animated: true)
     }
 }

@@ -81,8 +81,11 @@ class RegisterPresenterImpl: RegisterPresenter {
         authRepository.register(username: username, nickname: nickname, password: password, confirmPassword: confirmPassword) { [weak self] registerEntity in
             guard let self = self else {return}
             self.registerVC.showLoading(isShow: false)
-            if let accessToken = registerEntity.accessToken, !accessToken.isEmpty {
+            if let accessToken = registerEntity.accessToken,
+               let refreshToken = registerEntity.refreshToken,
+               !accessToken.isEmpty {
                 AuthService.share.accessToken = accessToken
+                AuthService.share.refreshToken = refreshToken
                 self.registerVC.registerSuccess()
             } else {
                 self.registerVC.registerFailure(errorMsg: "Something went wrong!")

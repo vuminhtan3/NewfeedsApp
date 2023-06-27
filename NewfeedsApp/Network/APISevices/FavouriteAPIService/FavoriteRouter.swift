@@ -1,5 +1,5 @@
 //
-//  FavouriteRouter.swift
+//  FavoriteRouter.swift
 //  NewfeedsApp
 //
 //  Created by Minh Tan Vu on 19/06/2023.
@@ -8,10 +8,10 @@
 import Foundation
 import Alamofire
 
-enum FavouriteRouter: URLRequestConvertible {
+enum FavoriteRouter: URLRequestConvertible {
     case getPosts(page: Int, pageSize: Int)
-    case favourite(postID: String)
-    case unFavourite(postID: String)
+    case favorite(postID: String)
+    case unFavorite(postID: String)
     
     var baseURL: URL {
         return URL(string: NetworkConstant.domain)!
@@ -21,9 +21,9 @@ enum FavouriteRouter: URLRequestConvertible {
         switch self {
         case .getPosts:
             return .get
-        case .favourite:
+        case .favorite:
             return .post
-        case .unFavourite:
+        case .unFavorite:
             return .delete
         }
     }
@@ -32,9 +32,9 @@ enum FavouriteRouter: URLRequestConvertible {
         switch self {
         case .getPosts:
             return "favorites"
-        case .favourite:
+        case .favorite:
             return "favorites"
-        case .unFavourite:
+        case .unFavorite:
             return "favorites"
         }
     }
@@ -46,11 +46,11 @@ enum FavouriteRouter: URLRequestConvertible {
                 "page": page,
                 "pageSize": pageSize
             ]
-        case .favourite(let postID):
+        case .favorite(let postID):
             return [
                 "post_id": postID
             ]
-        case .unFavourite(let postID):
+        case .unFavorite(let postID):
             return [
                 "post_id" : postID
             ]
@@ -83,9 +83,9 @@ enum FavouriteRouter: URLRequestConvertible {
 //        }
         
         switch self {
-        case .getPosts, .unFavourite:
+        case .getPosts, .unFavorite:
             request = try URLEncoding.default.encode(request, with: parameters)
-        case .favourite:
+        case .favorite:
             request = try JSONEncoding.default.encode(request, with: parameters)
         }
         request.timeoutInterval = 10

@@ -12,8 +12,8 @@ protocol PinPostPresenter {
     func getPosts()
     func loadMorePosts()
     func refreshPosts()
-    func favourite(postID: String)
-    func unFavourite(postID: String)
+    func favorite(postID: String)
+    func unFavorite(postID: String)
     func pin(postID: String)
     func unPin(postID: String)
 }
@@ -22,12 +22,12 @@ class PinPostPresenterImpl: PinPostPresenter {
     
     private var pinRepository: PinRepository
     private var pinPostVC: PinPostViewController
-    private var favouriteRepository: FavouriteRepository
+    private var favoriteRepository: FavoriteRepository
     
-    init(pinRepository: PinRepository, pinPostVC: PinPostViewController, favouriteRepository: FavouriteRepository) {
+    init(pinRepository: PinRepository, pinPostVC: PinPostViewController, favoriteRepository: FavoriteRepository) {
         self.pinRepository = pinRepository
         self.pinPostVC = pinPostVC
-        self.favouriteRepository = favouriteRepository
+        self.favoriteRepository = favoriteRepository
     }
     
     var currentPage = 1
@@ -39,7 +39,7 @@ class PinPostPresenterImpl: PinPostPresenter {
         pinPostVC.showLoading(isShow: true)
         
         getPosts()
-        getFavouritePosts()
+        getFavoritePosts()
         getPinPosts()
         
         apiGroup.notify(queue: .main) {
@@ -68,7 +68,7 @@ class PinPostPresenterImpl: PinPostPresenter {
     func refreshPosts() {
         currentPage = 1
         _getPost(page: currentPage, apiType: .refresh)
-        getFavouritePosts()
+        getFavoritePosts()
         
     }
     
@@ -109,12 +109,12 @@ class PinPostPresenterImpl: PinPostPresenter {
         }
     }
     
-    private func getFavouritePosts() {
+    private func getFavoritePosts() {
         apiGroup.enter()
-        favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
+        favoriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.pinPostVC.getFavouritePostSuccess(postIDs: postIDs)
+            self.pinPostVC.getFavoritePostSuccess(postIDs: postIDs)
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
@@ -137,12 +137,12 @@ class PinPostPresenterImpl: PinPostPresenter {
         }
     }
     
-    //Call API Favourite
-    func favourite(postID: String) {
-        favouriteRepository.favourite(postID: postID) { [weak self] response in
+    //Call API Favorite
+    func favorite(postID: String) {
+        favoriteRepository.favorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.pinPostVC.favouritePost(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.pinPostVC.favoritePost(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
@@ -150,11 +150,11 @@ class PinPostPresenterImpl: PinPostPresenter {
         }
     }
     
-    func unFavourite(postID: String) {
-        favouriteRepository.unFavourite(postID: postID) { [weak self] response in
+    func unFavorite(postID: String) {
+        favoriteRepository.unFavorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.pinPostVC.unFavouritePostSuccess(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.pinPostVC.unFavoritePostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
@@ -165,7 +165,7 @@ class PinPostPresenterImpl: PinPostPresenter {
     func pin(postID: String) {
         pinRepository.pinPost(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
+            if let post = response.data, let postID = post.id {
                 self.pinPostVC.pinPost(postID: postID)
             }
         } failure: { [weak self] apiError in
@@ -177,7 +177,7 @@ class PinPostPresenterImpl: PinPostPresenter {
     func unPin(postID: String) {
         pinRepository.unPin(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
+            if let post = response.data, let postID = post.id {
                 self.pinPostVC.unPinPostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in

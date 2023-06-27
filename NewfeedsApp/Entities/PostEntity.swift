@@ -6,46 +6,50 @@
 //
 
 import Foundation
-struct PostEntity: Decodable {
+
+// MARK: - PostEntity
+struct PostEntity: Codable {
     let title, content, address: String?
+    let latitude, longitude: Int?
     let author: Author?
-    let createdAt, updatedAt, id: String?
-    
+    let createdAt, updatedAt: String?
+    let isFavorite, isPin: Bool?
+    let id: String?
+
     enum CodingKeys: String, CodingKey {
-        case title, content, address, author
+        case title, content, address, latitude, longitude, author
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case id
+        case isFavorite, isPin, id
     }
 }
 
 // MARK: - Author
-struct Author: Decodable {
-    let username, createdAt, updatedAt: String?
+struct Author: Codable {
+    let username: String?
     let profile: Profile?
-    let isAdmin: Bool?
+    let createdAt, updatedAt: String?
+    let pointAmount: Int?
     let id: String?
 
     enum CodingKeys: String, CodingKey {
-        case username
+        case username, profile
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case profile
-        case isAdmin = "is_admin"
+        case pointAmount = "point_amount"
         case id
     }
 }
 
 // MARK: - Profile
-struct Profile: Decodable {
-    let bio, createdAt, updatedAt, gender: String?
+struct Profile: Codable {
+    let bio: String?
     let avatar: String?
+    let updatedAt, createdAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case bio
-        case createdAt = "created_at"
+        case bio, avatar
         case updatedAt = "updated_at"
-        case gender, avatar
+        case createdAt = "created_at"
     }
 }
-

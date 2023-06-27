@@ -12,8 +12,8 @@ protocol HomepagePresenter {
     func getPosts()
     func loadMorePosts()
     func refreshPosts()
-    func favourite(postID: String)
-    func unFavourite(postID: String)
+    func favorite(postID: String)
+    func unfavorite(postID: String)
     func pin(postID: String)
     func unPin(postID: String)
 }
@@ -21,13 +21,13 @@ protocol HomepagePresenter {
 class HomepagePresenterImpl: HomepagePresenter {
     
     private var postRepository: PostRepository
-    private var favouriteRepository: FavouriteRepository
+    private var favoriteRepository: FavoriteRepository
     private var pinRepository: PinRepository
     private var homepageVC: HomepageViewController
     
-    init(postRepository: PostRepository, favouriteRepository: FavouriteRepository, pinRepository: PinRepository, homepageVC: HomepageViewController) {
+    init(postRepository: PostRepository, favoriteRepository: FavoriteRepository, pinRepository: PinRepository, homepageVC: HomepageViewController) {
         self.postRepository = postRepository
-        self.favouriteRepository = favouriteRepository
+        self.favoriteRepository = favoriteRepository
         self.pinRepository = pinRepository
         self.homepageVC = homepageVC
     }
@@ -39,14 +39,14 @@ class HomepagePresenterImpl: HomepagePresenter {
     
     let concurentQueue = DispatchQueue(label: "techmaster.queue.concurrent", attributes: .concurrent)
     
-//    private var favouritePosts = [PostEntity]()
+//    private var favoritePosts = [PostEntity]()
 //    private var pinPosts = [PostEntity]()
     
     func getInitData() {
         homepageVC.showLoading(isShow: true)
         
         getPosts()
-        getFavouritePosts()
+        getfavoritePosts()
         getPinPosts()
         
         apiGroup.notify(queue: .main) {
@@ -88,7 +88,7 @@ class HomepagePresenterImpl: HomepagePresenter {
     func refreshPosts() {
         currentPage = 1
         _getPost(page: currentPage, apiType: .refresh)
-        getFavouritePosts()
+        getfavoritePosts()
         getPinPosts()
     }
     
@@ -132,12 +132,12 @@ class HomepagePresenterImpl: HomepagePresenter {
         }
     }
 
-    private func getFavouritePosts() {
+    private func getfavoritePosts() {
         apiGroup.enter()
-        favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
+        favoriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.homepageVC.getFavouritePostSuccess(postIDs: postIDs)
+            self.homepageVC.getfavoritePostSuccess(postIDs: postIDs)
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
@@ -160,25 +160,25 @@ class HomepagePresenterImpl: HomepagePresenter {
         }
     }
     
-    //Call API Favourite
-    func favourite(postID: String) {
-        favouriteRepository.favourite(postID: postID) { [weak self] response in
+    //Call API favorite
+    func favorite(postID: String) {
+        favoriteRepository.favorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.homepageVC.favouritePost(postID: postID)
-            }
+//            if let post = response.data, let postID = post.id {
+                self.homepageVC.favoritePost(postID: postID)
+//            }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
-    func unFavourite(postID: String) {
-        favouriteRepository.unFavourite(postID: postID) { [weak self] response in
+    func unfavorite(postID: String) {
+        favoriteRepository.unFavorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.homepageVC.unFavouritePostSuccess(postID: postID)
-            }
+//            if let post = response.data, let postID = post.id {
+                self.homepageVC.unfavoritePostSuccess(postID: postID)
+//            }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             self.homepageVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
@@ -189,7 +189,7 @@ class HomepagePresenterImpl: HomepagePresenter {
     func pin(postID: String) {
         pinRepository.pinPost(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
+            if let post = response.data, let postID = post.id {
                 self.homepageVC.pinPost(postID: postID)
             }
         } failure: { [weak self] apiError in
@@ -201,7 +201,7 @@ class HomepagePresenterImpl: HomepagePresenter {
     func unPin(postID: String) {
         pinRepository.unPin(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
+            if let post = response.data, let postID = post.id {
                 self.homepageVC.unPinPostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in

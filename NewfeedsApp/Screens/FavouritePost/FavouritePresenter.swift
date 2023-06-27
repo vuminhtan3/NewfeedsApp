@@ -1,5 +1,5 @@
 //
-//  FavouritePresenter.swift
+//  favoritePresenter.swift
 //  NewfeedsApp
 //
 //  Created by Minh Tan Vu on 19/06/2023.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-protocol FavouritePresenter {
+protocol favoritePresenter {
     func getInitData()
     func getPosts()
     func loadMorePosts()
     func refreshPosts()
-    func favourite(postID: String)
-    func unFavourite(postID: String)
+    func favorite(postID: String)
+    func unfavorite(postID: String)
     func pin(postID: String)
     func unPin(postID: String)
 }
 
-class FavouritePresenterImpl: FavouritePresenter {
+class favoritePresenterImpl: favoritePresenter {
     
-    private var favouriteRepository: FavouriteRepository
-    private var favouriteVC: FavouriteViewController
+    private var favoriteRepository: FavoriteRepository
+    private var favoriteVC: favoriteViewController
     private var pinRepository: PinRepository
     
-    init(favouriteRepository: FavouriteRepository, favouriteVC: FavouriteViewController, pinRepository: PinRepository) {
-        self.favouriteRepository = favouriteRepository
-        self.favouriteVC = favouriteVC
+    init(favoriteRepository: FavoriteRepository, favoriteVC: favoriteViewController, pinRepository: PinRepository) {
+        self.favoriteRepository = favoriteRepository
+        self.favoriteVC = favoriteVC
         self.pinRepository = pinRepository
     }
     
@@ -37,18 +37,18 @@ class FavouritePresenterImpl: FavouritePresenter {
     let concurentQueue = DispatchQueue(label: "techmaster.queue.concurrent", attributes: .concurrent)
     
     func getInitData() {
-        favouriteVC.showLoading(isShow: true)
+        favoriteVC.showLoading(isShow: true)
         
         getPosts()
-        getFavouritePosts()
+        getfavoritePosts()
         getPinPosts()
         
         apiGroup.notify(queue: .main) {
             DispatchQueue.main.async {
-                self.favouriteVC.showLoading(isShow: false)
+                self.favoriteVC.showLoading(isShow: false)
                 self.concurentQueue.async {
                     DispatchQueue.main.async {
-                        self.favouriteVC.tableView.reloadData()
+                        self.favoriteVC.tableView.reloadData()
                     }
                 }
             }
@@ -76,22 +76,22 @@ class FavouritePresenterImpl: FavouritePresenter {
     private func _getPost(page: Int, pageSize: Int = 100, apiType: APIType) {
         switch apiType {
         case .getInit:
-            favouriteVC.showLoading(isShow: true)
+            favoriteVC.showLoading(isShow: true)
         default:
             break
         }
-        favouriteRepository.getPosts(page: page, pageSize: pageSize) { [weak self] response in
+        favoriteRepository.getPosts(page: page, pageSize: pageSize) { [weak self] response in
             guard let self = self else {return}
             
             switch apiType {
             case .getInit:
-                self.favouriteVC.showLoading(isShow: false)
-                self.favouriteVC.getPosts(posts: response.results)
+                self.favoriteVC.showLoading(isShow: false)
+                self.favoriteVC.getPosts(posts: response.results)
             case .loadmore:
-                self.favouriteVC.loadmorePosts(posts: response.results)
+                self.favoriteVC.loadmorePosts(posts: response.results)
             case .refresh:
-                self.favouriteVC.hideRefreshLoading()
-                self.favouriteVC.getPosts(posts: response.results)
+                self.favoriteVC.hideRefreshLoading()
+                self.favoriteVC.getPosts(posts: response.results)
             }
             self.loadMoreAvailable = response.loadMoreAvailable
             
@@ -99,27 +99,27 @@ class FavouritePresenterImpl: FavouritePresenter {
             guard let self = self else {return}
             switch apiType {
             case .getInit:
-                self.favouriteVC.showLoading(isShow: false)
-                self.favouriteVC.getPosts(posts: [])
+                self.favoriteVC.showLoading(isShow: false)
+                self.favoriteVC.getPosts(posts: [])
             case .refresh:
-                self.favouriteVC.hideRefreshLoading()
+                self.favoriteVC.hideRefreshLoading()
             case .loadmore:
-                self.favouriteVC.loadmorePosts(posts: [])
+                self.favoriteVC.loadmorePosts(posts: [])
             }
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
-    private func getFavouritePosts() {
+    private func getfavoritePosts() {
 //        apiGroup.enter()
-        favouriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
+        favoriteRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.favouriteVC.getFavouritePostSuccess(postIDs: postIDs)
+            self.favoriteVC.getfavoritePostSuccess(postIDs: postIDs)
 //            self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
@@ -128,61 +128,61 @@ class FavouritePresenterImpl: FavouritePresenter {
         pinRepository.getPosts(page: 1, pageSize: 100) { [weak self] response in
             guard let self = self else {return}
             let postIDs = response.results.compactMap({$0.id})
-            self.favouriteVC.getPinPostSuccess(postIDs: postIDs)
+            self.favoriteVC.getPinPostSuccess(postIDs: postIDs)
             self.apiGroup.leave()
         } failure: { [weak self] apiError in
             guard let self = self else {return}
             self.apiGroup.leave()
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
-    //Call API Favourite
-    func favourite(postID: String) {
-        favouriteRepository.favourite(postID: postID) { [weak self] response in
+    //Call API favorite
+    func favorite(postID: String) {
+        favoriteRepository.favorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.favouriteVC.favouritePost(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.favoriteVC.favoritePost(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
-    func unFavourite(postID: String) {
-        favouriteRepository.unFavourite(postID: postID) { [weak self] response in
+    func unfavorite(postID: String) {
+        favoriteRepository.unFavorite(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.favouriteVC.unFavouritePostSuccess(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.favoriteVC.unfavoritePostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     //Call API Pin
     func pin(postID: String) {
         pinRepository.pinPost(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.favouriteVC.pinPost(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.favoriteVC.pinPost(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     
     func unPin(postID: String) {
         pinRepository.unPin(postID: postID) { [weak self] response in
             guard let self = self else {return}
-            if let post = response.data, let postID = post.postID {
-                self.favouriteVC.unPinPostSuccess(postID: postID)
+            if let post = response.data, let postID = post.id {
+                self.favoriteVC.unPinPostSuccess(postID: postID)
             }
         } failure: { [weak self] apiError in
             guard let self = self else {return}
-            self.favouriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
+            self.favoriteVC.callAPIFailure(errorMsg: apiError?.errorMsg ?? "Something went wrong")
         }
     }
     

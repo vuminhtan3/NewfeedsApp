@@ -2,7 +2,7 @@
 //  AuthorData+CoreDataProperties.swift
 //  NewfeedsApp
 //
-//  Created by Minh Tan Vu on 21/06/2023.
+//  Created by Minh Tan Vu on 23/06/2023.
 //
 //
 
@@ -16,12 +16,6 @@ extension AuthorData {
         return NSFetchRequest<AuthorData>(entityName: "AuthorData")
     }
 
-    @NSManaged public var username: String?
-    @NSManaged public var createdAt: String?
-    @NSManaged public var updatedAt: String?
-    @NSManaged public var id: String?
-    @NSManaged public var isAdmin: String?
-    @NSManaged public var profile: ProfileData?
 
 }
 

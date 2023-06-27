@@ -1,5 +1,5 @@
 //
-//  FavouriteViewController.swift
+//  favoriteViewController.swift
 //  NewfeedsApp
 //
 //  Created by Minh Tan Vu on 13/06/2023.
@@ -9,39 +9,39 @@ import UIKit
 import Alamofire
 import MBProgressHUD
 
-protocol FavouriteDisplay {
+protocol favoriteDisplay {
     func getPosts(posts: [PostEntity])
     func loadmorePosts(posts: [PostEntity])
     func callAPIFailure(errorMsg: String?)
     func showLoading(isShow: Bool)
     func hideRefreshLoading()
-    func getFavouritePostSuccess(postIDs: [String])
+    func getfavoritePostSuccess(postIDs: [String])
     func getPinPostSuccess(postIDs: [String])
-    func favouritePost(postID: String)
-    func unFavouritePostSuccess(postID: String)
+    func favoritePost(postID: String)
+    func unfavoritePostSuccess(postID: String)
 }
 
-class FavouriteViewController: UIViewController {
+class favoriteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     private var posts: [PostEntity]?
-    private var presenter: FavouritePresenter!
+    private var presenter: favoritePresenter!
     private var refresher = UIRefreshControl()
     
     private var cacheImages = [String: UIImage]()
     
-    private var favouritePostIDs = [String]()
+    private var favoritePostIDs = [String]()
     private var pinPostIDs = [String]()
     
     override func viewDidLoad() {
-        let favouriteService = FavouriteListAPIServiceImpl()
-        let favouriteRepository = FavouriteRepositoryImpl(favouriteAPIService: favouriteService)
+        let favoriteService = FavoriteListAPIServiceImpl()
+        let favoriteRepository = FavoriteRepositoryImpl(favoriteAPIService: favoriteService)
         let pinService = PinAPIServiceImpl()
         let pinRepository = PinRepositoryImpl(pinAPIService: pinService)
         
-        presenter = FavouritePresenterImpl(favouriteRepository: favouriteRepository,
-                                           favouriteVC: self,
+        presenter = favoritePresenterImpl(favoriteRepository: favoriteRepository,
+                                           favoriteVC: self,
                                            pinRepository: pinRepository)
         super.viewDidLoad()
         setupTableView()
@@ -86,8 +86,8 @@ class FavouriteViewController: UIViewController {
     }
 }
 
-//MARK: - FavouriteDataSource
-extension FavouriteViewController: UITableViewDataSource {
+//MARK: - favoriteDataSource
+extension favoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts?.count ?? 0
     }
@@ -108,14 +108,14 @@ extension FavouriteViewController: UITableViewDataSource {
             cell.authorAvatar(image: nil)
         }
 //        let homepageVC = HomepageViewController()
-        let isFavourited = self.favouritePostIDs.contains(where: {$0 == post.id})
+        let isfavorited = self.favoritePostIDs.contains(where: {$0 == post.id})
         let isPinned = self.pinPostIDs.contains(where: {$0 == post.id})
-        cell.favouriteButtonActionHandle = { [weak self] in
+        cell.favoriteButtonActionHandle = { [weak self] in
             guard let self = self else { return }
-            if isFavourited {
-                self.presenter.unFavourite(postID: post.id!)
+            if isfavorited {
+                self.presenter.unfavorite(postID: post.id!)
             } else {
-                self.presenter.favourite(postID: post.id!)
+                self.presenter.favorite(postID: post.id!)
             }
         }
         cell.pinButtonActionHandle = { [weak self] in
@@ -127,7 +127,7 @@ extension FavouriteViewController: UITableViewDataSource {
             }
         }
         
-        cell.binData(post: post, isFavourited: isFavourited, isPinned: isPinned)
+        cell.binData(post: post, isFavorited: isfavorited, isPinned: isPinned)
         return cell
     }
     
@@ -143,16 +143,16 @@ extension FavouriteViewController: UITableViewDataSource {
     
 }
 
-//MARK: - FavouriteDelegate
-extension FavouriteViewController: UITableViewDelegate {
+//MARK: - favoriteDelegate
+extension favoriteViewController: UITableViewDelegate {
     
 }
 
-//MARK: - FavouriteDisplay
-extension FavouriteViewController: FavouriteDisplay {
+//MARK: - favoriteDisplay
+extension favoriteViewController: favoriteDisplay {
     
-    func getFavouritePostSuccess(postIDs: [String]) {
-        self.favouritePostIDs = postIDs
+    func getfavoritePostSuccess(postIDs: [String]) {
+        self.favoritePostIDs = postIDs
         self.tableView.reloadData()
     }
     
@@ -161,13 +161,13 @@ extension FavouriteViewController: FavouriteDisplay {
         self.tableView.reloadData()
     }
     
-    func favouritePost(postID: String) {
-        self.favouritePostIDs.append(postID)
+    func favoritePost(postID: String) {
+        self.favoritePostIDs.append(postID)
         self.reloadRow(where: postID)
     }
     
-    func unFavouritePostSuccess(postID: String) {
-        self.favouritePostIDs.removeAll { id in
+    func unfavoritePostSuccess(postID: String) {
+        self.favoritePostIDs.removeAll { id in
             return id == postID
         }
         self.reloadRow(where: postID)
@@ -191,7 +191,7 @@ extension FavouriteViewController: FavouriteDisplay {
                                                   y: tableView.frame.midY,
                                                   width: tableView.frame.size.width,
                                                   height: tableView.frame.size.height))
-            messageLb.text = "You haven't favourited any posts yet"
+            messageLb.text = "You haven't favorited any posts yet"
             messageLb.textColor = .black
             messageLb.numberOfLines = 0
             messageLb.textAlignment = .center

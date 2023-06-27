@@ -77,8 +77,12 @@ class LoginPresenterImpl: LoginPresenter {
         authRepository.login(username: username, password: password) { [weak self] loginEntity in
             guard let self = self else {return}
             self.loginVC.showLoading(isShow: false)
-            if let accessToken = loginEntity.accessToken, !accessToken.isEmpty {
+            if let accessToken = loginEntity.accessToken,
+               let refreshToken = loginEntity.refreshToken,
+               !accessToken.isEmpty {
                 AuthService.share.accessToken = accessToken
+                AuthService.share.refreshToken = refreshToken
+                
                 self.loginVC.loginSuccess()
             } else {
                 self.loginVC.loginFailure(errorMsg: "Something went wrong!")

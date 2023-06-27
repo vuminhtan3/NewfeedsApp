@@ -1,5 +1,5 @@
 //
-//  PinEntity.swift
+//  FavoriteEntity.swift
 //  NewfeedsApp
 //
 //  Created by Minh Tan Vu on 18/06/2023.
@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct PinEntity: Codable {
+// MARK: - FavoriteEntity
+
+struct FavoriteEntity: Codable {
     let author: Author?
     let createdAt, updatedAt: String?
     let isFavorite, isPin: Bool?

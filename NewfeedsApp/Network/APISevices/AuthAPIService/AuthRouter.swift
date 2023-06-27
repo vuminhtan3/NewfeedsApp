@@ -9,9 +9,10 @@ import Foundation
 import Alamofire
 
 enum AuthRouter: URLRequestConvertible {
-    case login(body: Parameters)
-    case register(body: Parameters)
+    case login(username: String, password: String)
+    case register(username: String, name: String, password: String)
     case logout
+    case refresh(refreshToken: String)
     
     var baseURL: URL {
         return URL(string: NetworkConstant.domain)!
@@ -19,7 +20,7 @@ enum AuthRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .login, .register:
+        case .login, .register, .refresh:
             return .post
         case .logout:
             return .delete
@@ -34,6 +35,30 @@ enum AuthRouter: URLRequestConvertible {
             return "register"
         case .logout:
             return "logout"
+        case .refresh(refreshToken: let refreshToken):
+            return "refresh_token"
+        }
+    }
+    
+    var parameters: Parameters? {
+        switch self {
+        case .login(let username, let password):
+            return [
+                "username": username,
+                "password": password
+            ]
+        case .register(let username,
+                       let nickname,
+                       let password):
+            return [
+                "username": username,
+                "name": nickname,
+                "password": password
+            ]
+        case .refresh(let refreshToken):
+            return ["refresh_token": refreshToken]
+        default:
+            return nil
         }
     }
     
@@ -44,7 +69,7 @@ enum AuthRouter: URLRequestConvertible {
         request.method = method
         
         switch self {
-        case .login(let parameters), .register(let parameters):
+        case .login, .register, .refresh:
             request = try JSONEncoding.default.encode(request, with: parameters)
         case .logout:
             request = try URLEncoding.default.encode(request, with: nil)
